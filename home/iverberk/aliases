@@ -64,7 +64,7 @@
   ga = "git add";
   gb = "git branch";
   gbr = "git branch";
-  gc = "git commit -v --untracked-files = no";
+  gc = "git commit -v --untracked-files=no";
   gcl = "git clone";
   gco = "git checkout";
   gcob = "git checkout -b";

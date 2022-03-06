@@ -12,6 +12,15 @@ in
   # Enable default XDG directories
   xdg.enable = true;
 
+  # xdg.configFile."i3/config".text = builtins.readFile ./i3;
+  # xdg.configFile."rofi/config.rasi".text = builtins.readFile ./rofi;
+
+  xsession.pointerCursor = {
+    name = "Vanilla-DMZ";
+    package = pkgs.vanilla-dmz;
+    size = 32;
+  };
+
   # Enable application launchers via .desktop files
   targets.genericLinux.enable = true;
   
@@ -21,9 +30,13 @@ in
   # Install default user packages
   home = {
     packages = with pkgs; [
+      firefox
       tree-sitter
       htop
       ripgrep
+      rofi
+      i3status
+      i3lock
       gcc
       go
       gopls
@@ -38,6 +51,23 @@ in
     sessionVariables = {
       LANG = locale;
       LC_ALL = locale;
+    };
+  };
+
+  programs.i3status = {
+    enable = true;
+
+    general = {
+      colors = true;
+      color_good = "#8C9440";
+      color_bad = "#A54242";
+      color_degraded = "#DE935F";
+    };
+
+    modules = {
+      ipv6.enable = false;
+      "wireless _first_".enable = false;
+      "battery all".enable = false;
     };
   };
 
@@ -103,8 +133,20 @@ in
     }];
     shellInit = ''
       base16-tomorrow-night-eighties
+
+      # Kitty Shell Integration
+      if set -q KITTY_INSTALLATION_DIR
+        set --global KITTY_SHELL_INTEGRATION enabled
+        source "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_conf.d/kitty-shell-integration.fish"
+        set --prepend fish_complete_path "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_completions.d"
+      end
+
+      # Do not show any greeting
+      set --universal --erase fish_greeting
+      function fish_greeting; end
+      funcsave fish_greeting
     '';
-    shellAliases = import ./home/aliases;
+    shellAliases = import ./aliases;
   };
 
   programs.lazygit = {

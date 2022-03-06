@@ -31,8 +31,18 @@
     ];
   in {
 
-    homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
+    # NixOS configuration
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      inherit system;
 
+      modules = [
+        ./nixos/hardware.nix
+        ./nixos/configuration.nix
+      ];
+    };
+
+    # (Non-)NixOS Home configuration
+    homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
       inherit system username;
 
       stateVersion = "22.05";
@@ -48,7 +58,7 @@
       homeDirectory = "/home/${username}";
 
       # Specify the path to your home configuration here
-      configuration = import ./home.nix;
+      configuration = import ./home/${username};
 
       extraSpecialArgs = { inherit inputs; };
     };
