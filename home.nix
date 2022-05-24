@@ -31,6 +31,8 @@ in
       gcc
       jq
       gopls
+      sops
+      age
       kubectl
       kubernetes-helm
       stern
