@@ -33,6 +33,7 @@ in
       gopls
       sops
       age
+      fnm
       kubectl
       kubernetes-helm
       stern
@@ -142,6 +143,9 @@ in
     initExtraBeforeCompInit = ''
       bindkey '^[[A' history-substring-search-up
       bindkey '^[[B' history-substring-search-down
+    '';
+    initExtra = ''
+      eval "$(fnm env --use-on-cd)"
     '';
     zplug = {
       enable = true;
