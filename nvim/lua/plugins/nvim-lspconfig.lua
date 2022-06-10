@@ -110,11 +110,6 @@ nvim_lsp["yamlls"].setup({
   on_attach = on_attach,
 })
 
---[[ nvim_lsp["pylsp"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-}) ]]
-
 nvim_lsp["pyright"].setup({
   capabilities = capabilities,
   on_attach = on_attach,

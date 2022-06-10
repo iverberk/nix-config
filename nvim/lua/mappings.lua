@@ -4,8 +4,8 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-map('n', '<leader>n', ':NvimTreeToggle<cr>')
-map('n', '<leader>l', ':NvimTreeFindFile<CR>')
+map('n', '<leader>n', '::Neotree reveal toggle<cr>)')
+map('n', '<leader>l', ':NvimTreeFindFile<cr>')
 map('n', '<leader>y', '"+y')
 map('n', '<leader>p', '"+p')
 map('n', '<leader>w', ':w<cr>')

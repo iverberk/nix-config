@@ -19,7 +19,6 @@ return require('packer').startup(function()
   use { 'lewis6991/impatient.nvim' }
   use { 'neovim/nvim-lspconfig', config = [[ require('plugins/nvim-lspconfig') ]] }
   use { 'hoob3rt/lualine.nvim', config = [[ require('plugins/lualine') ]], requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
-  use { 'kyazdani42/nvim-tree.lua', config = [[ require('plugins/nvim-tree') ]], requires = { 'kyazdani42/nvim-web-devicons' } }
   use { 'hrsh7th/nvim-cmp', config = [[ require('plugins/nvim-cmp') ]], requires = { "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer" } }
   use { 'hrsh7th/cmp-nvim-lsp', requires = { 'hrsh7th/nvim-cmp' } }
   use { 'hrsh7th/vim-vsnip', requires = { 'hrsh7th/nvim-cmp' } }
@@ -32,15 +31,16 @@ return require('packer').startup(function()
   use { 'rafamadriz/friendly-snippets' }
   use { 'b3nj5m1n/kommentary' }
   use { 'tpope/vim-surround' }
-  use { 'akinsho/toggleterm.nvim', config = [[ require('plugins/toggleterm') ]] }
+  use { 'akinsho/toggleterm.nvim', config = [[ require('plugins/toggleterm') ]], tag = 'v1.*' }
   use { 'lukas-reineke/indent-blankline.nvim', config = [[ require('plugins/indent-blankline') ]] }
-  use { 'akinsho/bufferline.nvim', config = [[ require('plugins/bufferline') ]], requires = 'kyazdani42/nvim-web-devicons' }
+  use { 'akinsho/bufferline.nvim', config = [[ require('plugins/bufferline') ]], requires = 'kyazdani42/nvim-web-devicons', tag = 'v2.*' }
   use { 'famiu/bufdelete.nvim' }
   use { 'knubie/vim-kitty-navigator', run = 'cp ./*.py ~/.config/kitty/' }
   use { 'RRethy/nvim-base16', config = [[ require('plugins/nvim-base16') ]] }
   use { 'mfussenegger/nvim-dap' }
   use { 'mfussenegger/nvim-dap-python' }
   use { 'nvim-telescope/telescope-dap.nvim' }
+  use { 'nvim-neo-tree/neo-tree.nvim', config = [[ require('plugins/neo-tree') ]], branch = "v2.x", requires = { "nvim-lua/plenary.nvim", "kyazdani42/nvim-web-devicons", "MunifTanjim/nui.nvim" } }
 
   if packer_bootstrap then
     require('packer').sync()

@@ -39,11 +39,8 @@ in
       stern
       kube3d
       docker-compose
-      python39Full
+      python39
       python39Packages.pip
-      python39Packages.python-lsp-server
-      python39Packages.setuptools
-      python39Packages.debugpy
       nixgl.nixGLIntel # Needed for Kitty
       nodePackages.yaml-language-server
       nodePackages.vscode-json-languageserver
@@ -88,7 +85,6 @@ in
 
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-nightly;
   };
 
   xdg.configFile."nvim" = {
