@@ -8,7 +8,7 @@ require("bufferline").setup {
     indicator_icon = "│",
     offsets = {
       {
-        filetype = "NvimTree",
+        filetype = "neo-tree",
         text = "File Explorer",
       }
     },
