@@ -9,17 +9,6 @@ vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', op
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-vim.g.diagnostics_visible = true
-function _G.toggle_diagnostics()
-  if vim.g.diagnostics_visible then
-    vim.g.diagnostics_visible = false
-    vim.diagnostic.disable()
-  else
-    vim.g.diagnostics_visible = true
-    vim.diagnostic.enable()
-  end
-end
-
 local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -36,7 +25,6 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>t', ':call v:lua.toggle_diagnostics()<CR>', {silent=true, noremap=true})
 
   if client.resolved_capabilities.document_formatting then
     vim.cmd([[
@@ -59,10 +47,16 @@ null_ls.setup({
   },
 
   sources = {
+    null_ls.builtins.code_actions.gitsigns,
+    null_ls.builtins.code_actions.shellcheck,
     null_ls.builtins.diagnostics.shellcheck.with({ diagnostics_format = "[#{c}] #{m} (#{s})" }),
     null_ls.builtins.diagnostics.yamllint.with({args = { "--format", "parsable", "-" }}),
+    null_ls.builtins.diagnostics.pylint,
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.formatting.isort,
+    null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.fixjson
   },
 
   on_attach = on_attach

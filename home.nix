@@ -41,9 +41,13 @@ in
       docker-compose
       python39
       python39Packages.pip
+      python39Packages.black
+      python39Packages.isort
+      python39Packages.pylint
       nixgl.nixGLIntel # Needed for Kitty
       nodePackages.yaml-language-server
       nodePackages.vscode-json-languageserver
+      nodePackages.fixjson
       nodePackages.pyright
       yamllint
       terraform-ls
@@ -114,8 +118,8 @@ in
     recursive = true;
   };
 
-  xdg.configFile."pycodestyle".text = ''
-    [pycodestyle]
+  xdg.configFile."pylintrc".text = ''
+    [FORMAT]
     max-line-length = 125
   '';
 
