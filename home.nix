@@ -44,6 +44,8 @@ in
       python39Packages.black
       python39Packages.isort
       python39Packages.pylint
+      python39Packages.setuptools
+      python39Packages.debugpy
       nixgl.nixGLIntel # Needed for Kitty
       nodePackages.yaml-language-server
       nodePackages.vscode-json-languageserver
@@ -66,8 +68,17 @@ in
 
   programs.vscode = {
     enable = true;
+
+    extensions = [
+      pkgs.vscode-extensions.asvetliakov.vscode-neovim
+      pkgs.vscode-extensions.ms-python.python
+      pkgs.vscode-extensions.bbenoist.nix
+      pkgs.vscode-extensions.golang.go
+    ];
+
     userSettings = {
       "window.titleBarStyle" = "custom"; # Get rid of the system title bar
+      "vscode-neovim.neovimExecutablePaths.linux" = "/home/iverberk/.nix-profile/bin/nvim";
     };
   };
 

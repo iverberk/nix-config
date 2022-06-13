@@ -33,10 +33,3 @@ wo.wrap = false
 if vim.fn.has('wsl') then
   o.clipboard = "unnamedplus"
 end
-
-vim.diagnostic.config {
-  virtual_text = false,
-  signs = true,
-  underline = false,
-  update_in_insert = true,
-}

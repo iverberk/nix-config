@@ -2,7 +2,7 @@ local lualine = require('lualine')
 
 lualine.setup({
   options = {
-    theme = 'auto',
+    theme = 'base16',
   },
-  extensions = { 'nvim-tree' }
+  extensions = { 'neo-tree' }
 })

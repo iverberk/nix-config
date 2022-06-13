@@ -1,11 +1,10 @@
 local function map(mode, lhs, rhs, opts)
-  local options = {noremap = true}
+  local options = {noremap = true, silent = true }
   if opts then options = vim.tbl_extend('force', options, opts) end
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-map('n', '<leader>n', ':Neotree reveal toggle<cr>)')
-map('n', '<leader>l', ':NvimTreeFindFile<cr>')
+map('n', '<leader>n', ':Neotree reveal toggle<cr>')
 map('n', '<leader>y', '"+y')
 map('n', '<leader>p', '"+p')
 map('n', '<leader>w', ':w<cr>')
