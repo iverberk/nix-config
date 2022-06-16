@@ -4,7 +4,6 @@ vim.api.nvim_set_keymap("n", "<M-w>", ":Bdelete<CR>", { noremap = true, silent =
 
 require("bufferline").setup {
   options = {
-    numbers = "none",
     indicator_icon = "│",
     offsets = {
       {
