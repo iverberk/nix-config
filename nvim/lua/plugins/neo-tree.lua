@@ -9,7 +9,7 @@ neo_tree.setup({
     filtered_items = {
       visible = false,
       hide_dotfiles = false,
-      hide_gitignored = false,
+      hide_gitignored = true,
       hide_hidden = false,
     },
     follow_current_file = true,
@@ -17,3 +17,11 @@ neo_tree.setup({
     use_libuv_file_watcher = true
   }
 })
+
+local function map(mode, lhs, rhs, opts)
+  local options = {noremap = true, silent = true }
+  if opts then options = vim.tbl_extend('force', options, opts) end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
+map('n', '<leader>n', ':Neotree reveal toggle<cr>')

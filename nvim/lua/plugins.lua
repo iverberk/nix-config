@@ -43,8 +43,9 @@ return require('packer').startup(function()
   use { 'nvim-telescope/telescope-dap.nvim' }
   use { 'nvim-neo-tree/neo-tree.nvim', config = [[ require('plugins/neo-tree') ]], branch = "v2.x", requires = { "nvim-lua/plenary.nvim", "kyazdani42/nvim-web-devicons", "MunifTanjim/nui.nvim" } }
   use { 'ggandor/leap.nvim', config = [[ require('plugins/leap') ]] }
-  use { "nvim-neotest/neotest", config = [[ require('plugins/nvim-neotest') ]], requires = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter", "antoinemadec/FixCursorHold.nvim" } }
-  use { "nvim-neotest/neotest-python", requires = { "nvim-neotest/neotest" } }
+  use { 'nvim-neotest/neotest', config = [[ require('plugins/nvim-neotest') ]], requires = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter", "antoinemadec/FixCursorHold.nvim" } }
+  use { 'nvim-neotest/neotest-python', requires = { 'nvim-neotest/neotest' } }
+  use { 'danymat/neogen', config = [[ require('plugins/neogen') ]], requires = "nvim-treesitter/nvim-treesitter", tag = "*" }
 
   if packer_bootstrap then
     require('packer').sync()
