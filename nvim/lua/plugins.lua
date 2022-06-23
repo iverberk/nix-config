@@ -39,7 +39,6 @@ return require('packer').startup(function()
   use { 'RRethy/nvim-base16', config = [[ require('plugins/nvim-base16') ]] }
   use { 'mfussenegger/nvim-dap', config = [[ require('plugins/nvim-dap') ]] }
   use { 'mfussenegger/nvim-dap-python', config = [[ require('plugins/nvim-dap-python') ]] }
-  use { 'rcarriga/nvim-dap-ui', config = [[ require('plugins/nvim-dap-ui') ]], requires = { 'mfussenegger/nvim-dap' } }
   use { 'nvim-telescope/telescope-dap.nvim' }
   use { 'nvim-neo-tree/neo-tree.nvim', config = [[ require('plugins/neo-tree') ]], branch = "v2.x", requires = { "nvim-lua/plenary.nvim", "kyazdani42/nvim-web-devicons", "MunifTanjim/nui.nvim" } }
   use { 'ggandor/leap.nvim', config = [[ require('plugins/leap') ]] }
