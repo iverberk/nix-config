@@ -56,6 +56,7 @@ in
       unstable.terraform
       unstable.argocd
       unstable.golangci-lint
+      stdenv.cc.cc.lib
     ];
 
     sessionVariables = {

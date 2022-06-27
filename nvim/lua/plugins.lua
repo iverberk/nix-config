@@ -45,6 +45,7 @@ return require('packer').startup(function()
   use { 'nvim-neotest/neotest', config = [[ require('plugins/nvim-neotest') ]], requires = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter", "antoinemadec/FixCursorHold.nvim" } }
   use { 'nvim-neotest/neotest-python', requires = { 'nvim-neotest/neotest' } }
   use { 'danymat/neogen', config = [[ require('plugins/neogen') ]], requires = "nvim-treesitter/nvim-treesitter", tag = "*" }
+  use { 'unblevable/quick-scope', config = [[ require('plugins/quick-scope') ]] }
 
   if packer_bootstrap then
     require('packer').sync()
