@@ -20,11 +20,14 @@ return require('packer').startup(function()
   use { 'neovim/nvim-lspconfig', config = [[ require('plugins/nvim-lspconfig') ]] }
   use { 'RRethy/nvim-base16', config = [[ require('plugins/nvim-base16') ]] }
   use { 'nvim-lualine/lualine.nvim', config = [[ require('plugins/lualine') ]], requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
-  use { 'hrsh7th/nvim-cmp', config = [[ require('plugins/nvim-cmp') ]], requires = { "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer" } }
-  use { 'hrsh7th/cmp-nvim-lsp-signature-help', requires = { 'hrsh7th/nvim-cmp' } }
-  use { 'hrsh7th/cmp-nvim-lsp', requires = { 'hrsh7th/nvim-cmp' } }
+  use { 'hrsh7th/nvim-cmp', config = [[ require('plugins/nvim-cmp') ]], requires = { 
+      'hrsh7th/cmp-nvim-lsp', 
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-vsnip'
+    } 
+  }
   use { 'hrsh7th/vim-vsnip', requires = { 'hrsh7th/nvim-cmp' } }
-  use { 'hrsh7th/cmp-vsnip', requires = { 'hrsh7th/nvim-cmp' } }
   use { 'nvim-telescope/telescope.nvim', config = [[ require('plugins/telescope') ]], requires = { 'nvim-lua/plenary.nvim' } }
   use { 'nvim-treesitter/nvim-treesitter', config = [[ require('plugins/nvim-treesitter') ]], run = ':TSUpdate' }
   use { 'jose-elias-alvarez/null-ls.nvim', requires = { "nvim-lua/plenary.nvim" } }
