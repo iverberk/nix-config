@@ -51,6 +51,8 @@ in
       nodePackages.vscode-json-languageserver
       nodePackages.fixjson
       nodePackages.pyright
+      nodePackages.typescript-language-server
+      nodePackages.typescript
       yamllint
       terraform-ls
       unstable.terraform
