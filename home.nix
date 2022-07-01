@@ -39,6 +39,7 @@ in
       stern
       kube3d
       docker-compose
+      shellcheck
       python39
       python39Packages.pip
       python39Packages.black
@@ -53,6 +54,8 @@ in
       nodePackages.pyright
       nodePackages.typescript-language-server
       nodePackages.typescript
+      nodePackages.eslint_d
+      nodePackages.prettier_d_slim
       yamllint
       terraform-ls
       unstable.terraform

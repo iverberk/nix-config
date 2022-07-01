@@ -35,7 +35,7 @@ return require('packer').startup(function()
   use { 'lewis6991/gitsigns.nvim', config = [[ require('plugins/gitsigns') ]], requires = { 'nvim-lua/plenary.nvim' } }
   use { 'rafamadriz/friendly-snippets' }
   use { 'numtostr/comment.nvim', config = [[ require('plugins/comment') ]] } 
-  use { 'JoosepAlviste/nvim-ts-context-commentstring', config = [[ require('plugins/nvim-ts-context-commentstring') ]], requires = "nvim-treesitter/nvim-treesitter" }
+  use { 'JoosepAlviste/nvim-ts-context-commentstring', requires = "nvim-treesitter/nvim-treesitter" }
   use { 'tpope/vim-surround' }
   use { 'akinsho/toggleterm.nvim', config = [[ require('plugins/toggleterm') ]], tag = 'v1.*' }
   use { 'lukas-reineke/indent-blankline.nvim', config = [[ require('plugins/indent-blankline') ]] }
@@ -51,7 +51,8 @@ return require('packer').startup(function()
   use { 'nvim-neotest/neotest-python', requires = { 'nvim-neotest/neotest' } }
   use { 'danymat/neogen', config = [[ require('plugins/neogen') ]], requires = "nvim-treesitter/nvim-treesitter", tag = "*" }
   use { 'unblevable/quick-scope', config = [[ require('plugins/quick-scope') ]] }
-  -- use { 'jose-elias-alvarez/typescript.nvim', config = [[ require('plugins/typescript') ]] }
+  use { 'jose-elias-alvarez/typescript.nvim', config = [[ require('plugins/typescript') ]] }
+  use { 'ray-x/lsp_signature.nvim', config = [[ require('plugins/lsp-signature') ]] }
 
   if packer_bootstrap then
     require('packer').sync()
