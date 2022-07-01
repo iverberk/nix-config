@@ -1,7 +1,7 @@
 vim.diagnostic.config({
     severity_sort = true,
     virtual_text = false,
-    update_in_insert = false,
+    update_in_insert = true,
     underline = false,
     float = {
       border = 'rounded',

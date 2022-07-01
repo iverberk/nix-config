@@ -33,7 +33,6 @@ local on_attach = function(client, bufnr)
           end,
       })
   end
-
   
 end
 
@@ -73,10 +72,7 @@ nvim_lsp["gopls"].setup({
   cmd = {
     'gopls', 
     '-mode=stdio',
-    -- '-remote=auto', 
-    -- "-logfile=auto",
     "-debug=:0",
-    -- '-remote.debug=:0',
     "-rpc.trace",
   },
   settings = {
@@ -89,7 +85,7 @@ nvim_lsp["gopls"].setup({
   },
   flags = {
     allow_incremental_sync = true,
-    debounce_text_changes = 150
+    debounce_text_changes = 250
   }
 })
 
@@ -110,6 +106,19 @@ nvim_lsp["yamlls"].setup({
 })
 
 nvim_lsp["pyright"].setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+
+  settings = {
+    python = {
+      analysis = {
+        typeCheckingMode = "off"
+      },
+    },
+  }
+})
+
+nvim_lsp["tsserver"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
 
