@@ -14,4 +14,4 @@ function leap_all_windows()
   }
 end
 
-vim.keymap.set('n', ';', leap_all_windows, { silent = true })
+vim.keymap.set('n', "'", leap_all_windows, { silent = true })

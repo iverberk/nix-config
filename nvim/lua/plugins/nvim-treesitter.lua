@@ -20,27 +20,26 @@ require('nvim-treesitter.configs').setup({
   },
 
   context_commentstring = {
-    enable = true
+    enable = true,
+    enable_autocmd = false
   },
 
   highlight = {
     enable = true,
-    additional_vim_regex_highlighting = false
+    use_languagetree = true
   },
+
+  autotag = {
+    enable = true
+  }, 
 
   indent = {
     enable = true,
-    disable = { 'yaml' }
   },
 
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm"
-    }
-  }
+  refactor = {
+    highlight_definitions = { enable = true },
+    highlight_current_scope = { enable = false },
+  },
 
 })

@@ -1,6 +1,8 @@
-local neogen = require('neogen')
+local map = require('utils').map
 
-neogen.setup({
+map("n", "<Leader>ds", ":lua require('neogen').generate()<CR>")
+
+require('neogen').setup({
   enabled = true,
   input_after_comment = true,
   languages = {
@@ -11,6 +13,3 @@ neogen.setup({
     },
   },
 })
-
-local opts = { noremap = true, silent = true }
-vim.api.nvim_set_keymap("n", "<Leader>ds", ":lua require('neogen').generate()<CR>", opts)

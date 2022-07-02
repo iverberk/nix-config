@@ -1,7 +1,8 @@
 local colorscheme = require('base16-colorscheme')
-local hi = colorscheme.highlight
 
 colorscheme.setup('tomorrow-night-eighties')
+
+local hi = colorscheme.highlight
 
 hi.VertSplit = { guifg='#373b41' }
 hi.IndentBlanklineChar    = { guifg='#444444', gui='nocombine' }

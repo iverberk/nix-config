@@ -40,6 +40,7 @@ in
       kube3d
       docker-compose
       shellcheck
+      shfmt
       python39
       python39Packages.pip
       python39Packages.black
@@ -48,16 +49,11 @@ in
       python39Packages.setuptools
       python39Packages.debugpy
       nixgl.nixGLIntel # Needed for Kitty
-      nodePackages.yaml-language-server
-      nodePackages.vscode-json-languageserver
       nodePackages.fixjson
-      nodePackages.pyright
-      nodePackages.typescript-language-server
       nodePackages.typescript
       nodePackages.eslint_d
       nodePackages.prettier_d_slim
       yamllint
-      terraform-ls
       unstable.terraform
       unstable.argocd
       unstable.golangci-lint
@@ -76,15 +72,12 @@ in
     enable = true;
 
     extensions = [
-      pkgs.vscode-extensions.asvetliakov.vscode-neovim
       pkgs.vscode-extensions.ms-python.python
-      pkgs.vscode-extensions.bbenoist.nix
       pkgs.vscode-extensions.golang.go
     ];
 
     userSettings = {
       "window.titleBarStyle" = "custom"; # Get rid of the system title bar
-      "vscode-neovim.neovimExecutablePaths.linux" = "/home/iverberk/.nix-profile/bin/nvim";
     };
   };
 
@@ -106,6 +99,7 @@ in
 
   programs.neovim = {
     enable = true;
+    package = pkgs.neovim-nightly;
   };
 
   xdg.configFile."nvim" = {

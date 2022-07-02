@@ -1,8 +1,10 @@
-vim.api.nvim_set_keymap("n", "<M-l>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<M-h>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<M-w>", ":Bdelete<CR>", { noremap = true, silent = true })
+local map = require ('utils').map
 
-require("bufferline").setup {
+map("n", "<M-l>", ":BufferLineCycleNext<CR>")
+map("n", "<M-h>", ":BufferLineCyclePrev<CR>")
+map("n", "<M-w>", ":Bdelete<CR>")
+
+require("bufferline").setup({
   options = {
     indicator_icon = "│",
     offsets = {
@@ -17,4 +19,4 @@ require("bufferline").setup {
     always_show_bufferline = false,
     separator_style = 'slant',
   },
-}
+})

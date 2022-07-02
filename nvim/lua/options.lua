@@ -5,7 +5,11 @@ local wo = vim.wo
 
 g.mapleader = ' '
 
-o.shortmess:append({ I = true })
+o.lazyredraw = true
+o.list = true
+o.listchars = {
+  trail = '·',
+}
 o.termguicolors = true
 o.syntax = 'on'
 g.noshowmode = true
@@ -21,15 +25,18 @@ o.undodir = vim.fn.stdpath('config') .. '/undodir'
 o.undofile = true
 o.incsearch = true
 o.hidden = true
-o.completeopt = 'menu,menuone,noselect'
+o.completeopt = {'menu', 'menuone', 'noselect'}
+o.shortmess:append({ I = true })
 o.signcolumn = 'yes'
 o.so = 999
+o.redrawtime = 1500
+o.timeoutlen = 250
+o.ttimeoutlen = 10
+o.updatetime = 100
+o.clipboard = "unnamedplus"
 o.fillchars = { eob = " ", vert = '▎' }
+
 bo.smartindent = true
 bo.swapfile = false
 wo.number = true
 wo.wrap = false
-
-if vim.fn.has('wsl') then
-  o.clipboard = "unnamedplus"
-end

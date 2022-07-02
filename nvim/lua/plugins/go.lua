@@ -1,6 +1,4 @@
-local go = require("go")
-
-go.setup({
+require('go').setup({
   fillstruct = "gopls", -- can be nil (use fillstruct, slower) and gopls
   gofmt = "gofumpt", -- gofmt cmd,
   max_line_len = 120, -- max line length in goline format
