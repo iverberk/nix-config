@@ -8,9 +8,6 @@ g.mapleader = ' '
 o.sessionoptions="blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos,terminal"
 o.lazyredraw = true
 o.list = true
-o.listchars = {
-  trail = '·',
-}
 o.termguicolors = true
 o.syntax = 'on'
 g.noshowmode = true

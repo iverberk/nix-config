@@ -65,7 +65,7 @@ cmp.setup({
     },
   },
   experimental = {
-    ghost_text = true,
+    ghost_text = false,
   },
   formatting = {
     format = function(entry, vim_item)

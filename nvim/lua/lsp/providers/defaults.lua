@@ -5,6 +5,11 @@ function M.on_attach(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, ...)
   end
 
+  if client.name == "tsserver" then
+    -- Disable tsserver formatting in favor of null-ls
+    client.resolved_capabilities.document_formatting = false
+  end
+
   -- Enable completion triggered by <c-x><c-o>
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 

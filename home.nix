@@ -14,7 +14,7 @@ in
 
   # Enable application launchers via .desktop files
   targets.genericLinux.enable = true;
-  
+
   # Manage home-manager with home-manager
   programs.home-manager.enable = true;
 
@@ -99,7 +99,7 @@ in
 
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-nightly;
+    # package = pkgs.neovim-nightly;
   };
 
   xdg.configFile."nvim" = {
@@ -188,5 +188,5 @@ in
     enable = true;
     goPath = "code/go";
     package = pkgs.go_1_17;
-  }; 
+  };
 }

@@ -52,6 +52,7 @@ return packer.startup(function()
   use ({
     'wbthomason/packer.nvim',
     'lewis6991/impatient.nvim',
+    '/direnv/direnv.vim',
     'nathom/filetype.nvim',
     'nvim-lua/plenary.nvim',
     'famiu/bufdelete.nvim',

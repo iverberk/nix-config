@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-22.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,7 +21,7 @@
     system = "x86_64-linux";
     username = "iverberk";
     overlays = [
-      inputs.neovim-nightly-overlay.overlay
+      # inputs.neovim-nightly-overlay.overlay
       inputs.nixgl.overlay
       (final: prev: {
         unstable = nixpkgs-unstable.legacyPackages.${prev.system};
@@ -41,7 +41,7 @@
         config = {
           allowUnfree = true;
         };
-      }; 
+      };
 
       homeDirectory = "/home/${username}";
 
