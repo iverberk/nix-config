@@ -49,7 +49,7 @@ local use = packer.use
 return packer.startup(function()
 
   -- Basics
-  use ({ 
+  use ({
     'wbthomason/packer.nvim',
     'lewis6991/impatient.nvim',
     'nathom/filetype.nvim',
@@ -59,19 +59,19 @@ return packer.startup(function()
   })
 
   -- Session management
-  use { 'glepnir/dashboard-nvim', config = [[ require('plugins/dashboard-nvim') ]] }
   use { 'rmagatti/auto-session', config = [[ require('plugins/auto-session') ]] }
+  use { 'rmagatti/session-lens', config = [[ require('plugins/session-lens') ]], requires = { 'rmagatti/auto-session', 'nvim-telescope/telescope.nvim' } }
 
   -- Navigation
   use { 'nvim-telescope/telescope.nvim', config = [[ require('plugins/telescope') ]], requires = { 'nvim-lua/plenary.nvim' } }
   use { 'ggandor/leap.nvim', config = [[ require('plugins/leap') ]] }
   use { 'unblevable/quick-scope', config = [[ require('plugins/quick-scope') ]] }
   use { 'knubie/vim-kitty-navigator', run = 'cp ./*.py ~/.config/kitty/' }
-  use { 'nvim-neo-tree/neo-tree.nvim', config = [[ require('plugins/neo-tree') ]], branch = "v2.x", event='VimEnter', requires = { 
-      "nvim-lua/plenary.nvim", 
-      "kyazdani42/nvim-web-devicons", 
-      "MunifTanjim/nui.nvim" 
-    } 
+  use { 'nvim-neo-tree/neo-tree.nvim', config = [[ require('plugins/neo-tree') ]], branch = "v2.x", event='VimEnter', requires = {
+      "nvim-lua/plenary.nvim",
+      "kyazdani42/nvim-web-devicons",
+      "MunifTanjim/nui.nvim"
+    }
   }
 
   -- UI
@@ -80,27 +80,27 @@ return packer.startup(function()
   use { 'akinsho/toggleterm.nvim', config = [[ require('plugins/toggleterm') ]], tag = 'v1.*' }
   use { 'akinsho/bufferline.nvim', config = [[ require('plugins/bufferline') ]], requires = 'kyazdani42/nvim-web-devicons', tag = 'v2.*' }
   use { 'lukas-reineke/indent-blankline.nvim', config = [[ require('plugins/indent-blankline') ]] }
-  use { 'nvim-lualine/lualine.nvim', config = [[ require('plugins/lualine') ]], after = { 'nvim-base16' }, requires = { 
-      'kyazdani42/nvim-web-devicons', opt = true 
-    } 
+  use { 'nvim-lualine/lualine.nvim', config = [[ require('plugins/lualine') ]], after = { 'nvim-base16' }, requires = {
+      'kyazdani42/nvim-web-devicons', opt = true
+    }
   }
 
   -- Auto-complete
-  use { 'neovim/nvim-lspconfig', config = [[ require('lsp') ]], requires = { 
+  use { 'neovim/nvim-lspconfig', config = [[ require('lsp') ]], requires = {
       'b0o/SchemaStore.nvim',
       'williamboman/nvim-lsp-installer',
       { 'jose-elias-alvarez/null-ls.nvim', config = [[ require('lsp/providers/null-ls') ]], after = 'nvim-lspconfig' },
       { 'ray-x/lsp_signature.nvim', config = [[ require('plugins/lsp-signature') ]], after = 'nvim-lspconfig' },
-    } 
+    }
   }
 
-  use { 'hrsh7th/nvim-cmp', config = [[ require('plugins/nvim-cmp') ]], requires = { 
+  use { 'hrsh7th/nvim-cmp', config = [[ require('plugins/nvim-cmp') ]], requires = {
       { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-vsnip', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
-    } 
+    }
   }
 
   use { 'hrsh7th/vim-vsnip', requires = { 'hrsh7th/nvim-cmp' } }

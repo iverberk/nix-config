@@ -1,5 +1,15 @@
 local telescope = require('telescope')
 local actions = require('telescope.actions')
+local map = require('utils').map
+
+map('n', '<C-p>', ':Telescope find_files hidden=true<cr>')
+map('n', '<M-g>', ':Telescope live_grep<cr>')
+map('n', '<M-o>', ':Telescope oldfiles<cr>')
+map('n', '<M-*>', ':Telescope grep_string<cr>')
+map('n', '<M-b>', ':Telescope buffers<cr>')
+map('n', '<M-r>', ':Telescope registers<cr>')
+map('n', '<M-p>', ':Telescope projects<cr>')
+map('n', '<M-q>', ':Telescope quickfix<cr>')
 
 telescope.setup({
   defaults = {
@@ -64,11 +74,4 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-map('n', '<C-p>', ':Telescope find_files hidden=true<cr>')
-map('n', '<M-g>', ':Telescope live_grep<cr>')
-map('n', '<M-o>', ':Telescope oldfiles<cr>')
-map('n', '<M-*>', ':Telescope grep_string<cr>')
-map('n', '<M-b>', ':Telescope buffers<cr>')
-map('n', '<M-r>', ':Telescope registers<cr>')
-map('n', '<M-p>', ':Telescope projects<cr>')
-map('n', '<M-q>', ':Telescope quickfix<cr>')
+

@@ -5,8 +5,8 @@ map('n', '<leader>ss', '<cmd>SaveSession<cr>')
 
 require("auto-session").setup({
   pre_save_cmds = { 'NeoTreeClose' },
-  -- post_restore_cmds = { 'NeoTreeRefresh' },
-  auto_session_enabled = false,
+  post_restore_cmds = { 'NeoTreeReveal' },
+  auto_session_create_enabled = true,
   auto_save_enabled = true,
-  auto_restore_enabled = false, 
+  auto_restore_enabled = false,
 })
