@@ -9,13 +9,7 @@ vim.diagnostic.config({
     severity_sort = true,
     update_in_insert = false,
     underline = false,
-    virtual_text = {
-      spacing = 4,
-      source = 'always',
-      severity = {
-        min = vim.diagnostic.severity.HINT
-      },
-    },
+    virtual_text = false,
     float = {
       focusable = false,
       border = 'rounded',

@@ -1,8 +1,5 @@
 local M = {}
 
-local augroup_name = 'NvimUtils'
-local group = vim.api.nvim_create_augroup(augroup_name, { clear = true })
-
 function M.map(mode, lhs, rhs, opts)
   local options = { noremap = true, silent = true }
   if opts then

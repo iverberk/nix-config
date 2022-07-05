@@ -1,6 +1,6 @@
 local map = require ('utils').map
 
-map('n', '<leader>y', '"+y')
+map('v', '<leader>y', '"+y')
 map('n', '<leader>p', '"+p')
 map('n', '<leader>w', ':w<cr>')
 map('n', '<leader>q', ':q<cr>')

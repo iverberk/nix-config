@@ -5,7 +5,7 @@ local wo = vim.wo
 
 g.mapleader = ' '
 
-o.sessionoptions="blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos,terminal"
+o.sessionoptions = 'buffers,curdir,folds,help,tabpages,winsize'
 o.lazyredraw = true
 o.list = true
 o.termguicolors = true
@@ -31,7 +31,6 @@ o.redrawtime = 1500
 o.timeoutlen = 250
 o.ttimeoutlen = 10
 o.updatetime = 100
-o.clipboard = "unnamedplus"
 o.fillchars = { eob = " ", vert = '▎' }
 
 bo.smartindent = true
