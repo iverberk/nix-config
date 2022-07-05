@@ -3,9 +3,7 @@ local o = vim.opt
 local bo = vim.bo
 local wo = vim.wo
 
-g.mapleader = ' '
-
-o.sessionoptions = 'buffers,curdir,folds,help,tabpages,winsize'
+o.sessionoptions = 'buffers,curdir,folds,tabpages,winsize'
 o.lazyredraw = true
 o.list = true
 o.termguicolors = true
@@ -32,6 +30,7 @@ o.timeoutlen = 250
 o.ttimeoutlen = 10
 o.updatetime = 100
 o.fillchars = { eob = " ", vert = '▎' }
+o.list = false
 
 bo.smartindent = true
 bo.swapfile = false
