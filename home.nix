@@ -99,7 +99,6 @@ in
 
   programs.neovim = {
     enable = true;
-    # package = pkgs.neovim-nightly;
   };
 
   xdg.configFile."nvim" = {
