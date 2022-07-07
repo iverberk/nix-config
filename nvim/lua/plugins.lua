@@ -113,6 +113,8 @@ return packer.startup(function()
   use { 'JoosepAlviste/nvim-ts-context-commentstring', requires = "nvim-treesitter/nvim-treesitter" }
   use { 'numtostr/comment.nvim', config = [[ require('plugins/comment') ]], event = 'BufWinEnter', requires = { 'JoosepAlviste/nvim-ts-context-commentstring' } }
   use { 'ray-x/go.nvim', config = [[ require('plugins/go') ]] }
+  use { 'windwp/nvim-ts-autotag', config = [[ require('plugins/nvim-ts-autotag') ]] }
+  use { "windwp/nvim-autopairs", config = [[ require('plugins/nvim-autopairs') ]] }
 
   -- Debugging
   use { 'mfussenegger/nvim-dap', config = [[ require('plugins/nvim-dap') ]] }

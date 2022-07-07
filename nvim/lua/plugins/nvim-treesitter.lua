@@ -1,22 +1,22 @@
 require('nvim-treesitter.configs').setup({
-  ensure_installed = { 
-    "gomod", 
-    "go", 
-    "nix", 
-    "comment", 
-    "bash", 
-    "hcl", 
-    "json5", 
-    "vim", 
-    "lua", 
-    "python", 
-    "dockerfile", 
-    "yaml", 
-    "javascript", 
-    "typescript", 
-    "json", 
-    "css", 
-    "html" 
+  ensure_installed = {
+    "gomod",
+    "go",
+    "nix",
+    "comment",
+    "bash",
+    "hcl",
+    "json5",
+    "vim",
+    "lua",
+    "python",
+    "dockerfile",
+    "yaml",
+    "javascript",
+    "typescript",
+    "json",
+    "css",
+    "html"
   },
 
   context_commentstring = {
@@ -28,10 +28,6 @@ require('nvim-treesitter.configs').setup({
     enable = true,
     use_languagetree = true
   },
-
-  autotag = {
-    enable = true
-  }, 
 
   indent = {
     enable = true,

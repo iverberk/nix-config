@@ -14,7 +14,6 @@ function _G.close_all_floating_wins()
 end
 
 require("auto-session").setup({
-  log_level = 'debug',
   pre_save_cmds = { 'Neotree close', _G.close_all_floating_wins },
   post_restore_cmds = { 'Neotree show' },
   auto_session_create_enabled = false,
