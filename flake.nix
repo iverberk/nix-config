@@ -4,14 +4,9 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-22.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    base16-fish = {
-      url = github:tomyun/base16-fish;
-      flake = false;
     };
     nixgl.url = "github:guibou/nixGL";
   };
@@ -20,35 +15,35 @@
   let
     system = "x86_64-linux";
     username = "iverberk";
-    overlays = [
-      # inputs.neovim-nightly-overlay.overlay
-      inputs.nixgl.overlay
-      (final: prev: {
-        unstable = nixpkgs-unstable.legacyPackages.${prev.system};
-      })
-    ];
   in {
 
     homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-
-      inherit system username;
-
-      stateVersion = "22.05";
-
       pkgs = import nixpkgs {
-        inherit system overlays;
+        inherit system;
 
         config = {
           allowUnfree = true;
         };
       };
 
-      homeDirectory = "/home/${username}";
+      modules = [
+        ./home.nix
+        ({
+          nixpkgs.overlays = [
+            inputs.nixgl.overlay
+            (final: prev: {
+              unstable = nixpkgs-unstable.legacyPackages.${prev.system};
+            })
+          ];
 
-      # Specify the path to your home configuration here
-      configuration = import ./home.nix;
+          home = {
+            inherit username;
 
-      extraSpecialArgs = { inherit inputs; };
+            homeDirectory = "/home/${username}";
+            stateVersion = "22.11";
+          };
+        })
+      ];
     };
   };
 }

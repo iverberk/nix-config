@@ -2,8 +2,6 @@
 
 let
   locale = "C.UTF-8";
-  homedir = builtins.getEnv "HOME";
-  username = builtins.getEnv "USER";
 in
 {
   # Manage fonts with home-manager
@@ -54,9 +52,9 @@ in
       nodePackages.eslint_d
       nodePackages.prettier_d_slim
       yamllint
-      unstable.terraform
+      terraform
       unstable.argocd
-      unstable.golangci-lint
+      golangci-lint
       stdenv.cc.cc.lib
     ];
 
@@ -108,7 +106,7 @@ in
 
   programs.kitty = {
     enable = true;
-    package = pkgs.unstable.kitty;
+    package = pkgs.kitty;
     font.name = "Meslo";
     font.package = (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; });
   };
@@ -186,6 +184,6 @@ in
   programs.go = {
     enable = true;
     goPath = "code/go";
-    package = pkgs.go_1_17;
+    package = pkgs.go_1_18;
   };
 }
