@@ -15,14 +15,16 @@
   homebrew = {
     enable = true;
 
+    onActivation = {
+      cleanup = "zap";
+      upgrade = true;
+    };
+
     brews = [
       "mas"
     ];
 
     casks = [
-      "ollama"
-      "lm-studio"
-      "microsoft-remote-desktop"
       "teamviewer"
       "slack"
       "alfred"
@@ -36,10 +38,10 @@
       "microsoft-outlook"
       "microsoft-teams"
       "onedrive"
-      "openvpn-connect"
       "rectangle"
       "spotify"
       "vmware-fusion"
+      "visual-studio-code"
       "whatsapp"
       "zoom"
     ];
@@ -61,6 +63,8 @@
     enable = true;
     entries = [
       { path = "/Applications/Firefox.app/"; }
+      { path = "/Applications/Ghostty.app/"; }
+      { path = "/Applications/Visual Studio Code.app/"; }
       { path = "/Applications/Microsoft Outlook.app/"; }
       { path = "/Applications/Microsoft To Do.app"; }
       { path = "/Applications/Spotify.app/"; }
