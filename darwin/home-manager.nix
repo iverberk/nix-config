@@ -2,12 +2,12 @@
 {
   home-manager = {
     useGlobalPkgs = true;
-    users.${user} = { pkgs, config, lib, ... } : {
 
+    users.${user} = { pkgs, ... } : {
       home = {
         enableNixpkgsReleaseCheck = false;
         packages = [ pkgs.dockutil ];
-        stateVersion = "21.11";
+        stateVersion = "24.05";
       };
     };
   };

@@ -85,6 +85,7 @@
 
     neovim = {
       enable = true;
+      package = pkgs.unstable.neovim-unwrapped;
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
@@ -115,7 +116,7 @@
 
     zsh = {
       enable = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       enableCompletion = true;
       syntaxHighlighting = {
         enable = true;
@@ -264,26 +265,6 @@
     ssh = {
       enable = true;
       serverAliveInterval = 60;
-      matchBlocks = {
-        "dev" = {
-          hostname = "10.131.6.7";
-          identityFile = "~/.ssh/ncsc";
-          forwardAgent = true;
-          user = "ivver";
-          localForwards = [
-            {
-              bind.port = 3390;
-              host.address = "127.0.0.1";
-              host.port = 3390;
-            }
-            {
-              bind.port = 3128;
-              host.address = "127.0.0.1";
-              host.port = 3128;
-            }
-          ];
-        };
-      };
     };
 
   };

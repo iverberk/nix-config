@@ -35,10 +35,12 @@
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
-  networking.hostName = "dev"; # Define your hostname.
-  networking.useDHCP = false;
-  networking.interfaces.ens160.useDHCP = true;
-  networking.firewall.enable = false;
+  networking = {
+    hostName = "dev";
+    useDHCP = false;
+    interfaces.ens160.useDHCP = true;
+    firewall.enable = false;
+  };
 
   # Video support
   hardware.opengl = {
@@ -112,10 +114,16 @@
       };
     };
 
+    displayManager = {
+      defaultSession = "none+i3";
+    };
+
     xserver = {
       enable = true;
-      layout = "nl";
-      xkbVariant = "mac";
+      xkb = {
+        layout = "nl";
+        variant = "mac";
+      };
       dpi = 220;
 
       desktopManager = {
@@ -124,7 +132,6 @@
       };
 
       displayManager = {
-        defaultSession = "none+i3";
         lightdm.enable = true;
 
         sessionCommands = ''
@@ -143,6 +150,10 @@
 
   environment = {
     systemPackages = with pkgs; [
+      cachix
+      gnumake
+      killall
+      gtkmm3
       copyq
       xclip
       (writeShellScriptBin "xrandr-auto" ''
