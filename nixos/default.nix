@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, ... } :
+{ config, inputs, pkgs, ghostty, ... } :
 {
   imports = [
     ./disk-config.nix
@@ -153,11 +153,12 @@
   environment = {
 
     variables = {
-      GDK_SCALE = "2";
-      GDK_DPI_SCALE = "0.5";
+      GDK_SCALE = "1";
+      GDK_DPI_SCALE = "1";
     };
 
     systemPackages = with pkgs; [
+      ghostty.packages.aarch64-linux.default
       cachix
       gnumake
       killall

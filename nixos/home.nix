@@ -275,6 +275,7 @@
   xdg.configFile."starship.toml".text = builtins.readFile config/starship.toml;
   xdg.configFile."nvim" = { source = config/nvim; recursive = true; };
   xdg.configFile."i3/config".text = builtins.readFile config/i3;
+  # xdg.configFile."ghostty/config".text = builtins.readFile config/ghostty;
 
   xresources.extraConfig = builtins.readFile config/Xresources;
 }
