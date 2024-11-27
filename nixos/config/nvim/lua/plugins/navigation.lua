@@ -1,14 +1,6 @@
 return {
 
   {
-    "m4xshen/hardtime.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim"
-    },
-    opts = {}
-  },
-
-  {
     'numtostr/Navigator.nvim',
     cmd = {
       'NavigatorLeft',
@@ -23,22 +15,6 @@ return {
     }
   },
 
-  -- {
-  --   "ggandor/leap.nvim",
-  --   config = function(_, opts)
-  --     local leap = require("leap")
-  --     for k, v in pairs(opts) do
-  --       leap.opts[k] = v
-  --     end
-  --     leap.add_default_mappings(true)
-  --     vim.keymap.del({ "x", "o" }, "x")
-  --     vim.keymap.del({ "x", "o" }, "X")
-  --     vim.keymap.set("n", "s", function()
-  --       require("leap").leap({ target_windows = { vim.api.nvim_get_current_win() } })
-  --     end)
-  --   end,
-  -- },
-
   {
     "folke/flash.nvim",
     opts = {},
@@ -50,16 +26,6 @@ return {
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
-
-  -- {
-  --   "rlane/pounce.nvim",
-  --   event = "VeryLazy",
-  --   opts = {},
-  --   keys = {
-  --     { "s", mode = { "n", "x", "o" }, function() require("pounce").pounce {} end, desc = "Pounce" },
-  --     { "S", mode = { "n", "o", "x" }, function() require("pounce").pounce { do_repeat = true } end, desc = "Pounce (repeat)" },
-  --   },
-  -- },
 
   {
     'nvim-telescope/telescope.nvim',

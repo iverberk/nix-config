@@ -134,6 +134,10 @@
       displayManager = {
         lightdm.enable = true;
 
+        setupCommands = ''
+          ${pkgs.xorg.xrandr}/bin/xrandr --output Virtual-1 --auto
+        '';
+
         sessionCommands = ''
           ${pkgs.xorg.xset}/bin/xset r rate 200 40
         '';
@@ -146,9 +150,13 @@
 
   };
 
-  ## Packages
-
   environment = {
+
+    variables = {
+      GDK_SCALE = "2";
+      GDK_DPI_SCALE = "0.5";
+    };
+
     systemPackages = with pkgs; [
       cachix
       gnumake
