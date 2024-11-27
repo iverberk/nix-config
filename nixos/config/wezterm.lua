@@ -3,6 +3,12 @@ local act = wezterm.action
 
 local LEADER = 'SHIFT|CMD'
 
+-- The color scheme you want to use
+local scheme = 'Tomorrow Night'
+
+-- Obtain the definition of that color scheme
+local scheme_def = wezterm.color.get_builtin_schemes()[scheme]
+
 local function conditionalActivatePane(window, pane, pane_direction, vim_direction)
   if pane:get_title():find("nvim") ~= nil or pane:get_title():find("ssh") ~= nil then
     window:perform_action(act.SendKey({ key = vim_direction, mods = 'CTRL' }), pane)
@@ -43,8 +49,17 @@ return {
     font = wezterm.font 'MesloLGS Nerd Font',
     font_size = 8.0,
   },
-  
-  color_scheme = 'Tomorrow Night',
+
+  color_scheme = scheme,
+
+  colors = {
+    tab_bar = {
+      active_tab = {
+        bg_color = scheme_def.background,
+        fg_color = scheme_def.foreground,
+      }
+    }
+  },
 
   keys = {
     { key = 't', mods = LEADER, action = act.SpawnTab 'CurrentPaneDomain' },
