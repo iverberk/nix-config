@@ -18,6 +18,10 @@
       firefox
       openvpn
       mutagen
+      kubectl
+      k9s
+      kind
+      tektoncd-cli
     ];
 
     pointerCursor = {

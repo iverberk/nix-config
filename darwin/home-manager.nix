@@ -44,6 +44,7 @@
       "visual-studio-code"
       "whatsapp"
       "zoom"
+      "obsidian"
     ];
 
     masApps = {

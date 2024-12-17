@@ -40,6 +40,10 @@
     useDHCP = false;
     interfaces.ens160.useDHCP = true;
     firewall.enable = false;
+    extraHosts =
+    ''
+      127.0.0.1 kind.local
+    '';
   };
 
   # Video support
