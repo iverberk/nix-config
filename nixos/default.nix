@@ -169,6 +169,7 @@
       gtkmm3
       copyq
       xclip
+      unzip
       (writeShellScriptBin "xrandr-auto" ''
         xrandr --output Virtual-1 --auto
       '')
