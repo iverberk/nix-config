@@ -34,6 +34,7 @@
       "microsoft-auto-update"
       "microsoft-excel"
       "microsoft-powerpoint"
+      "microsoft-onenote"
       "microsoft-word"
       "microsoft-outlook"
       "microsoft-teams"

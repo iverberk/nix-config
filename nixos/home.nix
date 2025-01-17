@@ -22,6 +22,11 @@
       k9s
       kind
       tektoncd-cli
+      kubernetes-helm
+      helmfile
+      kubernetes-helmPlugins.helm-diff
+      terraform
+      kustomize
     ];
 
     pointerCursor = {
@@ -47,6 +52,12 @@
   };
 
   programs = {
+
+    dircolors = {
+      enable = true;
+
+      enableZshIntegration = true;
+    };
 
     vscode = {
       enable = true;
