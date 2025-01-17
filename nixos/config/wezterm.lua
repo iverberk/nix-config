@@ -35,6 +35,15 @@ end)
 
 return {
 
+  window_padding = {
+    left = 2,
+    right = 0,
+    top = 2,
+    bottom = 0,
+  },
+
+  max_fps = 120,
+
   window_decorations = "RESIZE",
 
   window_close_confirmation = 'NeverPrompt',
