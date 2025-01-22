@@ -3,10 +3,12 @@ return {
   priority = 1000,
   lazy = false,
   keys = {
-    { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
+    { "<C-/>", function() Snacks.picker.grep() end, desc = "Grep" },
+    { "<C-p>", function() Snacks.picker.smart() end, desc = "Find files" },
+    { "<C-g>", function() Snacks.lazygit() end, desc = "Lazygit" },
+    { "<leader>p", function() Snacks.picker.projects() end, desc = "Projects", mode = { "n", "v" } },
     { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
     { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History" },
-    { "<C-g>", function() Snacks.lazygit() end, desc = "Lazygit" },
     { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
   },
   opts = {
@@ -18,6 +20,16 @@ return {
         height = 0.9,
         width = 0.9,
         zindex = 50,
+      }
+    },
+
+    picker = {
+      win = {
+        input = {
+          keys = {
+            ["<Esc>"] = { "close", mode = { "n", "i" } },
+          }
+        }
       }
     }
   }

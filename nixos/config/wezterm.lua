@@ -71,6 +71,7 @@ return {
   },
 
   keys = {
+    { key = "/", mods="CTRL", action=wezterm.action{SendString="\x1f"}}, -- needed to send ctrl-/ to neovim correctly.
     { key = 't', mods = LEADER, action = act.SpawnTab 'CurrentPaneDomain' },
     { key = 'RightArrow', mods = LEADER, action = act.ActivateTabRelative(1) },
     { key = 'LeftArrow', mods = LEADER, action = act.ActivateTabRelative(-1) },

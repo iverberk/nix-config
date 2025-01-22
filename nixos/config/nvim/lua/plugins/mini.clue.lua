@@ -6,8 +6,8 @@ return {
     mc.setup({
       triggers = {
         -- Multicursor trigger
-        { mode = 'n', keys = '<C-d>'},
-
+        { mode = 'n', keys = '<leader>d'},
+        { mode = 'v', keys = '<leader>d'},
 
         -- Leader triggers
         { mode = 'n', keys = '<Leader>' },
@@ -49,11 +49,19 @@ return {
         mc.gen_clues.z(),
 
         -- Multicursor
-        { mode = 'n', keys = '<C-d>n', postkeys = '<C-d>' },
-        { mode = 'n', keys = '<C-d>s', postkeys = '<C-d>' },
-        { mode = 'n', keys = '<C-d>N', postkeys = '<C-d>' },
-        { mode = 'n', keys = '<C-d>S', postkeys = '<C-d>' },
-        { mode = 'n', keys = '<C-d>A', postkeys = '<C-d>' },
+        { mode = 'n', keys = '<leader>dn', postkeys = '<leader>d' },
+        { mode = 'n', keys = '<leader>ds', postkeys = '<leader>d' },
+        { mode = 'n', keys = '<leader>dN', postkeys = '<leader>d' },
+        { mode = 'n', keys = '<leader>dS', postkeys = '<leader>d' },
+        { mode = 'n', keys = '<leader>da', postkeys = '<leader>d' },
+        { mode = 'n', keys = '<leader>dh', postkeys = '<leader>d' },
+        { mode = 'n', keys = '<leader>dj', postkeys = '<leader>d' },
+        { mode = 'n', keys = '<leader>dJ', postkeys = '<leader>d' },
+        { mode = 'n', keys = '<leader>dk', postkeys = '<leader>d' },
+        { mode = 'n', keys = '<leader>dK', postkeys = '<leader>d' },
+        { mode = 'n', keys = '<leader>dl', postkeys = '<leader>d' },
+        { mode = 'n', keys = '<leader>dt', postkeys = '<leader>d' },
+        { mode = 'n', keys = '<leader>dd', postkeys = '<leader>d' },
       }
     })
   end,

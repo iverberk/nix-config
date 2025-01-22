@@ -9,23 +9,19 @@ return {
     local set = vim.keymap.set
 
     -- Add or skip cursor above/below the main cursor.
-    -- set({"n", "v"}, "<up>",
-    --     function() mc.lineAddCursor(-1) end)
-    -- set({"n", "v"}, "<down>",
-    --     function() mc.lineAddCursor(1) end)
-    -- set({"n", "v"}, "<leader><up>",
-    --     function() mc.lineSkipCursor(-1) end)
-    -- set({"n", "v"}, "<leader><down>",
-    --     function() mc.lineSkipCursor(1) end)
+    set({"n", "v"}, "<leader>dk", function() mc.lineAddCursor(-1) end, { desc = "Cursor above", silent = true })
+    set({"n", "v"}, "<leader>dj", function() mc.lineAddCursor(1) end, { desc = "Cursor below", silent = true })
+    set({"n", "v"}, "<leader>dK", function() mc.lineSkipCursor(-1) end, { desc = "Skip cursor above", silent = true })
+    set({"n", "v"}, "<leader>dJ", function() mc.lineSkipCursor(1) end, { desc = "Skip cursor below", silent = true })
 
     -- Add or skip adding a new cursor by matching word/selection
-    set({"n", "v"}, "<C-d>n", function() mc.matchAddCursor(1) end, { desc = "Select next matching word/selection", silent = true })
-    set({"n", "v"}, "<C-d>s", function() mc.matchSkipCursor(1) end, { desc = "Skip next matching word/selection", silent = true })
-    set({"n", "v"}, "<C-d>N", function() mc.matchAddCursor(-1) end, { desc = "Select previous matching word/selection", silent = true })
-    set({"n", "v"}, "<C-d>S", function() mc.matchSkipCursor(-1) end, { desc = "Skip previous matching word/selection", silent = true })
+    set({"n", "v"}, "<leader>dn", function() mc.matchAddCursor(1) end, { desc = "Next match", silent = true })
+    set({"n", "v"}, "<leader>ds", function() mc.matchSkipCursor(1) end, { desc = "Skip next match", silent = true })
+    set({"n", "v"}, "<leader>dN", function() mc.matchAddCursor(-1) end, { desc = "Prev match", silent = true })
+    set({"n", "v"}, "<leader>dS", function() mc.matchSkipCursor(-1) end, { desc = "Skip prev match", silent = true })
 
     -- Add all matches in the document
-    set({"n", "v"}, "<C-d>a", mc.matchAllAddCursors, { desc = "Select all matching words/selections", silent = true })
+    set({"n", "v"}, "<leader>da", mc.matchAllAddCursors, { desc = "All matches", silent = true })
 
     -- You can also add cursors with any motion you prefer:
     -- set("n", "<right>", function()
@@ -36,15 +32,14 @@ return {
     -- end)
 
     -- Rotate the main cursor.
-    set({"n", "v"}, "<C-d>l", mc.nextCursor)
-    set({"n", "v"}, "<C-d>h", mc.prevCursor)
+    set({"n", "v"}, "<leader>dl", mc.nextCursor, { desc = "Next cursor", silent = true })
+    set({"n", "v"}, "<leader>dh", mc.prevCursor, { desc = "Previous cursor", silent = true })
     --
     -- -- Delete the main cursor.
-    -- set({"n", "v"}, "<leader>x", mc.deleteCursor)
-    --
+    set({"n", "v"}, "<leader>dd", mc.deleteCursor, { desc = "Delete cursor", silent = true })
     --
     -- -- Easy way to add and remove cursors using the main cursor.
-    -- set({"n", "v"}, "<c-q>", mc.toggleCursor)
+    set({"n", "v"}, "<leader>dt", mc.toggleCursor, { desc = "Toggle cursor", silent = true })
     --
     -- -- Clone every cursor and disable the originals.
     -- set({"n", "v"}, "<leader><c-q>", mc.duplicateCursors)

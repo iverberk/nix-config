@@ -3,7 +3,7 @@ return {
   opts = {},
   version = '*',
   keys = {
-    "<leader>j", "<cmd>Pounce<cr>",
-    "<leader>J", "<cmd>Pounce<cr>",
+    { "<leader>j", "<cmd>Pounce<cr>", "Jump" },
+    { "<leader>J", "<cmd>PounceRepeat<cr>", "Jump repeat" },
   }
 }

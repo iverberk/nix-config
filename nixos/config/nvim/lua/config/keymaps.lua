@@ -17,6 +17,7 @@ vim.keymap.set("n", "<leader>lq", "<cmd>copen<cr>", { desc = "List Quickfix" })
 
 -- escaping
 vim.keymap.set('i', 'jj', '<Esc>', { desc = "Exit insert mode" })
+vim.keymap.set('i', '<C-l>', '<Esc>A', { desc = "Append to end of line" })
 
 -- quit
 vim.keymap.set('n', '<leader>q', "<cmd>q<cr>", { desc = "Quit" })
