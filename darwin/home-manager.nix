@@ -25,6 +25,7 @@
     ];
 
     casks = [
+      "ghostty"
       "teamviewer"
       "slack"
       "alfred"
