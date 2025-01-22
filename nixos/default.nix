@@ -47,9 +47,8 @@
   };
 
   # Video support
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
   };
 
   disabledModules = [ "virtualisation/vmware-guest.nix" ];
