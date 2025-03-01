@@ -5,7 +5,7 @@ return {
     local configs = require("nvim-treesitter.configs")
 
     configs.setup({
-        ensure_installed = { "lua", "python", "javascript", "go", "json", "yaml", "terraform" },
+        ensure_installed = { "lua", "python", "javascript", "go", "json", "yaml", "terraform", "regex" },
         sync_install = false,
         highlight = { enable = true },
         indent = { enable = true },

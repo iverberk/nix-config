@@ -25,7 +25,7 @@ require("lazy").setup({
     { import = "plugins" },
   },
   install = { colorscheme = { "base16-tomorrow-night" } },
-  checker = { enabled = true },
+  checker = { enabled = true, notify = false },
   ui = {
     border = "single"
   }
