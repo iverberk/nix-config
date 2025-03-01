@@ -26,6 +26,9 @@
     ];
 
     casks = [
+      "webex"
+      "openvpn-connect"
+      "signal"
       "ghostty"
       "teamviewer"
       "slack"
