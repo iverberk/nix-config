@@ -7,6 +7,7 @@
     stateVersion = "23.11";
 
     packages = with pkgs; [
+      minikube
       bat
       fd
       fzf
@@ -20,13 +21,18 @@
       mutagen
       kubectl
       k9s
-      kind
+      unstable.kind
       tektoncd-cli
       kubernetes-helm
       helmfile
       kubernetes-helmPlugins.helm-diff
       terraform
       kustomize
+      shell-gpt
+      vale
+      yamllint
+      wget
+      stern
     ];
 
     pointerCursor = {
@@ -235,7 +241,7 @@
         kDn = "kubectl delete node";
         KDn = "kubectl delete node -n kube-system";
         kr = "kubectl replace";
-        ke = "kubectl explain";
+        ke = "kubectl exec -it";
         kl = "kubectl logs";
         Kl = "kubectl logs -n kube-system";
         kp = "kubectl proxy";
@@ -280,6 +286,13 @@
     ssh = {
       enable = true;
       serverAliveInterval = 60;
+      matchBlocks = {
+        bootstrap = {
+          hostname = "172.16.0.203";
+          user = "iverberk";
+          proxyJump = "root@149.56.241.79";
+        };
+      };
     };
 
   };

@@ -42,7 +42,7 @@
     firewall.enable = false;
     extraHosts =
     ''
-      127.0.0.1 kind.local
+      172.18.249.232 mwdb-dev assemblyline-dev
     '';
   };
 
@@ -54,6 +54,22 @@
   disabledModules = [ "virtualisation/vmware-guest.nix" ];
   virtualisation.vmware.guest.enable = true;
 
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
+      swtpm.enable = true;
+      ovmf = {
+        enable = true;
+        packages = [(pkgs.OVMF.override {
+          secureBoot = true;
+          tpmSupport = true;
+        }).fd];
+      };
+    };
+  };
+
   # Add docker daemon
   virtualisation.docker.enable = true;
 
@@ -64,7 +80,7 @@
     users.iverberk = {
       isNormalUser = true;
       home = "/home/iverberk";
-      extraGroups = [ "docker" "wheel" ];
+      extraGroups = [ "docker" "wheel" "libvirtd" ];
       shell = pkgs.zsh;
       hashedPassword = "$6$9C2p8Wlxq6KBZWyg$HnwZhzP4tfgsw/3/p.kd47A3bk09kU05.EYrwJBeW2923JaPjXHcEzBlpK.Qp38fXI9BS1idBxhjBaf9VZ0pT0";
       openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFAy4KxFlFnpvVhGzr4U/2w30N/t6BErFu0P+Sb6ulav" ]; 
@@ -98,6 +114,7 @@
   system.stateVersion = "23.11";
 
   programs = {
+    openvpn3.enable = true;
     zsh.enable = true;
     dconf.enable = true;
     ssh = {
