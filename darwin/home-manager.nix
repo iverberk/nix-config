@@ -51,6 +51,7 @@
       "whatsapp"
       "zoom"
       "obsidian"
+      "tailscale"
     ];
 
     masApps = {
