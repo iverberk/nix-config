@@ -40,12 +40,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ghostty = {
-      url = "git+ssh://git@github.com/ghostty-org/ghostty";
-    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, darwin, nix-homebrew, homebrew-core, homebrew-bundle, homebrew-cask, disko, ghostty } @inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, darwin, nix-homebrew, homebrew-core, homebrew-bundle, homebrew-cask, disko } @inputs:
     let
       user = "iverberk";
 

@@ -1,4 +1,3 @@
-{ config, inputs, pkgs, ghostty, ... } :
 {
   imports = [
     ./disk-config.nix
@@ -178,7 +177,6 @@
     };
 
     systemPackages = with pkgs; [
-      ghostty.packages.aarch64-linux.default
       cachix
       gnumake
       killall
