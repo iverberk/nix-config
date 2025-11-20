@@ -46,7 +46,6 @@
       "onedrive"
       "rectangle"
       "spotify"
-      "vmware-fusion"
       "visual-studio-code"
       "whatsapp"
       "zoom"
