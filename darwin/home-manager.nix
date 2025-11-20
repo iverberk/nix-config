@@ -68,6 +68,7 @@
   # Fully declarative dock using the latest from Nix Store
   local.dock = {
     enable = true;
+    username = "iverberk";
     entries = [
       { path = "/Applications/Firefox.app/"; }
       { path = "/Applications/Ghostty.app/"; }
