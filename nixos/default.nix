@@ -1,3 +1,4 @@
+{ config, inputs, pkgs, ... } :
 {
   imports = [
     ./disk-config.nix
@@ -41,7 +42,9 @@
     firewall.enable = false;
     extraHosts =
     ''
-      172.18.249.232 mwdb-dev assemblyline-dev
+      172.18.249.232 mwdb-dev assemblyline-dev keycloak-dev
+      172.18.187.221 mwdb-acc assemblyline-acc keycloak-acc
+      172.18.120.83  mwdb assemblyline keycloak
     '';
   };
 
@@ -106,7 +109,7 @@
     fontDir.enable = true;
 
     packages = [
-      (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; })
+      pkgs.nerd-fonts.meslo-lg
     ];
   };
 

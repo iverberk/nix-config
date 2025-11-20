@@ -146,7 +146,7 @@
       cdpath = [ "~/Code" ];
       plugins = [];
 
-      initExtra = ''
+      initContent = ''
         export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#757575'
 
         # Remove history data we don't want to see.
@@ -288,9 +288,32 @@
       serverAliveInterval = 60;
       matchBlocks = {
         bootstrap = {
-          hostname = "172.16.0.203";
+          hostname = "172.16.0.235";
+          user = "iverberk";
+          proxyJump = "root@51.91.62.180";
+        };
+
+        proxmox = {
+          hostname = "51.91.62.180";
+          user = "root";
+        };
+
+        loxilb-genesis = {
+          hostname = "172.16.0.237";
+          user = "iverberk";
+          proxyJump = "root@51.91.62.180";
+        };
+
+        capi = {
+          hostname = "172.16.0.205";
           user = "iverberk";
           proxyJump = "root@149.56.241.79";
+        };
+
+        vault = {
+          hostname = "172.16.0.236";
+          user = "iverberk";
+          proxyJump = "root@51.91.62.180";
         };
       };
     };
@@ -303,7 +326,6 @@
   xdg.configFile."starship.toml".text = builtins.readFile config/starship.toml;
   xdg.configFile."nvim" = { source = config/nvim; recursive = true; };
   xdg.configFile."i3/config".text = builtins.readFile config/i3;
-  # xdg.configFile."ghostty/config".text = builtins.readFile config/ghostty;
 
   xresources.extraConfig = builtins.readFile config/Xresources;
 }
