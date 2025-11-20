@@ -8,10 +8,7 @@
   nix = {
     settings.trusted-users = [ "@admin" "${user}" ];
 
-    useDaemon = true;
-
     gc = {
-      user = "root";
       automatic = true;
       interval = { Weekday = 0; Hour = 2; Minute = 0; };
       options = "--delete-older-than 30d";
@@ -25,11 +22,13 @@
     shell = pkgs.zsh;
   };
 
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   networking.hostName = "mbp";
 
   system = {
+    primaryUser = "iverberk";
+
     stateVersion = 4;
 
     checks = {
