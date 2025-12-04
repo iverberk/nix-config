@@ -323,7 +323,6 @@
   xdg.enable = true;
 
   xdg.configFile."lazygit/config.yml".text = builtins.readFile config/lazygit.yml;
-  xdg.configFile."starship.toml".text = builtins.readFile config/starship.toml;
   xdg.configFile."nvim" = { source = config/nvim; recursive = true; };
   xdg.configFile."i3/config".text = builtins.readFile config/i3;
 
