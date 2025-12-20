@@ -265,12 +265,11 @@
     git = {
       enable = true;
       ignores = [ "*.swp" ];
-      userName = "Ivo Verberk";
-      userEmail = "ivo.verberk@gmail.com";
-      lfs = {
-        enable = true;
-      };
-      extraConfig = {
+      settings = {
+        user = {
+          name = "Ivo Verberk";
+          email = "ivo.verberk@gmail.com";
+        };
         init.defaultBranch = "main";
         core = {
           editor = "vim";
@@ -279,13 +278,19 @@
         pull.rebase = true;
         push.default = "tracking";
         rebase.autoStash = true;
+
       };
-      
+      lfs = {
+        enable = true;
+      };
     };
 
     ssh = {
       enable = true;
-      serverAliveInterval = 60;
+      enableDefaultConfig = false;
+      matchBlocks."*" = {
+        serverAliveInterval = 60;
+      };
       matchBlocks = {
         bootstrap = {
           hostname = "172.16.0.235";
