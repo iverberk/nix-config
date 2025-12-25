@@ -110,6 +110,7 @@
   system.stateVersion = "23.11";
 
   programs = {
+    nix-ld.enable = true;
     openvpn3.enable = true;
     zsh.enable = true;
     dconf.enable = true;
@@ -174,6 +175,7 @@
     };
 
     systemPackages = with pkgs; [
+      lsof
       cachix
       gnumake
       killall

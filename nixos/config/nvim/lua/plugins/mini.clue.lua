@@ -1,5 +1,6 @@
 return {
   'echasnovski/mini.clue',
+  enabled = false,
   config = function()
     local mc = require('mini.clue')
 

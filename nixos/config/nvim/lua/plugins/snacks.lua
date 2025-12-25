@@ -6,7 +6,7 @@ return {
     { "<C-g>", function() Snacks.picker.grep() end, desc = "Grep" },
     { "<C-p>", function() Snacks.picker.smart() end, desc = "Files" },
     { "<C-b>", function() Snacks.picker.buffers() end, desc = "Buffers" },
-    { "<leader>g", function() Snacks.lazygit() end, desc = "Lazygit" },
+    { "<leader>G", function() Snacks.lazygit() end, desc = "Lazygit" },
     { "<leader>p", function() Snacks.picker.projects() end, desc = "Projects", mode = { "n", "v" } },
     { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
     { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History" },
@@ -23,7 +23,7 @@ return {
         zindex = 50,
       }
     },
-
+    input = { enabled = true },
     picker = {
       win = {
         input = {

@@ -33,6 +33,15 @@
       yamllint
       wget
       stern
+      pyright
+      python314
+      uv
+      poetry
+      mypy
+      ruff
+      unstable.gemini-cli
+      unstable.claude-code
+      unstable.opencode
     ];
 
     pointerCursor = {
@@ -330,6 +339,16 @@
   xdg.configFile."lazygit/config.yml".text = builtins.readFile config/lazygit.yml;
   xdg.configFile."nvim" = { source = config/nvim; recursive = true; };
   xdg.configFile."i3/config".text = builtins.readFile config/i3;
+
+  xdg.configFile."nvim/parser".source = "${pkgs.symlinkJoin {
+      name = "treesitter-parsers";
+      paths = (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: with plugins; [
+        python
+        lua
+        typescript
+        go
+      ])).dependencies;
+    }}/parser";
 
   xresources.extraConfig = builtins.readFile config/Xresources;
 }
