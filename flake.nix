@@ -40,9 +40,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    neovim = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, darwin, nix-homebrew, homebrew-core, homebrew-bundle, homebrew-cask, disko } @inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, darwin, nix-homebrew, homebrew-core, homebrew-bundle, homebrew-cask, disko, neovim }@inputs:
     let
       user = "iverberk";
 
@@ -128,7 +133,8 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.${user} = import ./nixos/home.nix;
+                users.${user} = { config, pkgs, lib, ... }:
+                  import ./nixos/home.nix { inherit config pkgs lib inputs; };
               };
             }
             ./nixos

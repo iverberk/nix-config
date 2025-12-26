@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... } :
+{ config, pkgs, lib, inputs, ... } :
 {
+  nixpkgs.overlays = [
+    inputs.neovim.overlays.default
+  ];
+
   home = {
     enableNixpkgsReleaseCheck = false;
     username = "iverberk";
@@ -42,6 +46,7 @@
       unstable.gemini-cli
       unstable.claude-code
       unstable.opencode
+      lua-language-server
     ];
 
     pointerCursor = {
@@ -115,7 +120,7 @@
 
     neovim = {
       enable = true;
-      package = pkgs.unstable.neovim-unwrapped;
+      package = inputs.neovim.packages.${pkgs.system}.default;
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
@@ -343,10 +348,41 @@
   xdg.configFile."nvim/parser".source = "${pkgs.symlinkJoin {
       name = "treesitter-parsers";
       paths = (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: with plugins; [
-        python
-        lua
-        typescript
+        bash
+        comment
+        css
+        diff
+        dockerfile
+        gitcommit
+        gitignore
         go
+        gomod
+        gosum
+        html
+        ini
+        javascript
+        jsdoc
+        json
+        lua
+        luadoc
+        make
+        markdown
+        markdown_inline
+        nginx
+        nix
+        python
+        query
+        regex
+        scss
+        sql
+        terraform
+        toml
+        tsx
+        typescript
+        vim
+        vimdoc
+        xml
+        yaml
       ])).dependencies;
     }}/parser";
 
