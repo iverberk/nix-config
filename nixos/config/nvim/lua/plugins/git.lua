@@ -5,7 +5,7 @@ vim.pack.add({
 
 -- Setup gitsigns.nvim
 require("gitsigns").setup({
-  current_line_blame = true,
+  current_line_blame = false,
   signs = {
     add = { text = "▎" },
     change = { text = "▎" },

@@ -125,7 +125,10 @@
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
-      extraPackages = [pkgs.gcc];
+      extraPackages = [pkgs.gcc pkgs.tree-sitter];
+      plugins = [
+        pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+      ];
     };
 
     starship = {
@@ -345,46 +348,46 @@
   xdg.configFile."nvim" = { source = config/nvim; recursive = true; };
   xdg.configFile."i3/config".text = builtins.readFile config/i3;
 
-  xdg.configFile."nvim/parser".source = "${pkgs.symlinkJoin {
-      name = "treesitter-parsers";
-      paths = (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: with plugins; [
-        bash
-        comment
-        css
-        diff
-        dockerfile
-        gitcommit
-        gitignore
-        go
-        gomod
-        gosum
-        html
-        ini
-        javascript
-        jsdoc
-        json
-        lua
-        luadoc
-        make
-        markdown
-        markdown_inline
-        nginx
-        nix
-        python
-        query
-        regex
-        scss
-        sql
-        terraform
-        toml
-        tsx
-        typescript
-        vim
-        vimdoc
-        xml
-        yaml
-      ])).dependencies;
-    }}/parser";
+  # xdg.configFile."nvim/parser".source = "${pkgs.symlinkJoin {
+  #     name = "treesitter-parsers";
+  #     paths = (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: with plugins; [
+  #       bash
+  #       comment
+  #       css
+  #       diff
+  #       dockerfile
+  #       gitcommit
+  #       gitignore
+  #       go
+  #       gomod
+  #       gosum
+  #       html
+  #       ini
+  #       javascript
+  #       jsdoc
+  #       json
+  #       lua
+  #       luadoc
+  #       make
+  #       markdown
+  #       markdown_inline
+  #       nginx
+  #       nix
+  #       python
+  #       query
+  #       regex
+  #       scss
+  #       sql
+  #       terraform
+  #       toml
+  #       tsx
+  #       typescript
+  #       vim
+  #       vimdoc
+  #       xml
+  #       yaml
+  #     ])).dependencies;
+  #   }}/parser";
 
   xresources.extraConfig = builtins.readFile config/Xresources;
 }

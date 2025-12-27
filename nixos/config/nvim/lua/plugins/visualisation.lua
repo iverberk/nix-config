@@ -53,3 +53,13 @@ vim.keymap.set({ "i", "n", "s" }, "<c-f>", function() if not require("noice.lsp"
 vim.keymap.set({ "i", "n", "s" }, "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end,
   { silent = true, expr = true, desc = "Scroll Backward" })
 -- stylua: ignore end
+
+vim.pack.add({
+  "https://github.com/nvim-lualine/lualine.nvim",
+})
+
+require("lualine").setup({
+  sections = {
+    lualine_x = { "overseer" },
+  },
+})
