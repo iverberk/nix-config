@@ -5,6 +5,7 @@ vim.pack.add({
 local wk = require("which-key")
 wk.setup({
   preset = "helix",
+  delay = 500
 })
 wk.add({
   { "<leader><tab>", group = "tabs" },
@@ -64,10 +65,10 @@ wk.add({
     {
       "<leader>fCr",
       function()
-        local cwd = vim.fn.getcwd() -- Current working directory
-        local full_path = vim.fn.expand("%:p") -- Full file path
+        local cwd = vim.fn.getcwd()              -- Current working directory
+        local full_path = vim.fn.expand("%:p")   -- Full file path
         local rel_path = full_path:sub(#cwd + 2) -- Remove cwd prefix and leading slash
-        vim.fn.setreg("+", rel_path) -- Copy relative file path to clipboard
+        vim.fn.setreg("+", rel_path)             -- Copy relative file path to clipboard
         vim.notify("Copied relative file path: " .. rel_path)
       end,
       desc = "Copy relative file path",
@@ -91,9 +92,8 @@ wk.add({
     -- Nested mappings are allowed and can be added in any order
     -- Most attributes can be inherited or overridden on any level
     -- There's no limit to the depth of nesting
-    mode = { "n", "v" }, -- NORMAL and VISUAL mode
+    mode = { "n", "v" },                          -- NORMAL and VISUAL mode
     { "<leader>q", "<cmd>q<cr>", desc = "Quit" }, -- no need to specify mode since it's inherited
     { "<leader>w", "<cmd>w<cr>", desc = "Write" },
   },
 })
-

@@ -4,10 +4,10 @@ end
 
 local default_keymaps = {
   { keys = "<leader>ca", func = vim.lsp.buf.code_action, desc = "Code Actions" },
-  { keys = "<leader>cr", func = vim.lsp.buf.rename, desc = "Code Rename" },
-  { keys = "<leader>k", func = vim.lsp.buf.hover, desc = "Hover Documentation", has = "hoverProvider" },
-  { keys = "K", func = vim.lsp.buf.hover, desc = "Hover (alt)", has = "hoverProvider" },
-  { keys = "gd", func = vim.lsp.buf.definition, desc = "Goto Definition", has = "definitionProvider" },
+  { keys = "<leader>cr", func = vim.lsp.buf.rename,      desc = "Code Rename" },
+  { keys = "<leader>k",  func = vim.lsp.buf.hover,       desc = "Hover Documentation", has = "hoverProvider" },
+  { keys = "K",          func = vim.lsp.buf.hover,       desc = "Hover (alt)",         has = "hoverProvider" },
+  { keys = "gd",         func = vim.lsp.buf.definition,  desc = "Goto Definition",     has = "definitionProvider" },
 }
 
 local completion = vim.g.completion_mode or "blink" -- or 'native'
@@ -18,6 +18,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     local buf = args.buf
     if client then
+      client.server_capabilities.semanticTokensProvider = nil
+
       -- Built-in completion
       if completion == "native" and client:supports_method("textDocument/completion") then
         vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
@@ -53,4 +55,3 @@ vim.lsp.enable({
   "lua_ls",
   "pyright",
 })
-

@@ -1,43 +1,55 @@
-local wezterm = require 'wezterm'
-local act = wezterm.action
+local wezterm        = require 'wezterm'
+local act            = wezterm.action
 
-local LEADER = 'SHIFT|CMD'
+local LEADER         = 'SHIFT|CMD'
 
 -- The color scheme you want to use
-local scheme = 'Tomorrow Night'
+local scheme         = 'Tomorrow Night'
 
 -- Obtain the definition of that color scheme
-local scheme_def = wezterm.color.get_builtin_schemes()[scheme]
+local scheme_def     = wezterm.color.get_builtin_schemes()[scheme]
 
-local function conditionalActivatePane(window, pane, pane_direction, vim_direction)
-  if pane:get_title():find("nvim") ~= nil or pane:get_title():find("ssh") ~= nil then
-    window:perform_action(act.SendKey({ key = vim_direction, mods = 'CTRL' }), pane)
-  else
-    window:perform_action(act.ActivatePaneDirection(pane_direction), pane)
-  end
+-- Neovim integration
+
+local direction_keys = { h = 'Left', j = 'Down', k = 'Up', l = 'Right' }
+
+local function split_nav(key)
+  return {
+    key = key,
+    mods = 'CTRL',
+    action = wezterm.action_callback(function(win, pane)
+      if pane:get_user_vars().IS_NVIM == "true" then
+        win:perform_action({ SendKey = { key = key, mods = "CTRL" } }, pane)
+      else
+        win:perform_action({ ActivatePaneDirection = direction_keys[key] }, pane)
+      end
+    end)
+  }
 end
 
-wezterm.on('ActivatePaneDirection-right', function(window, pane)
-    conditionalActivatePane(window, pane, 'Right', 'l')
+-- Events
+
+wezterm.on('update-status', function(window, pane)
+  window:set_right_status(
+    wezterm.format({
+      { Text = wezterm.mux.get_active_workspace() .. '/' .. pane:get_domain_name() }
+    })
+  )
 end)
 
-wezterm.on('ActivatePaneDirection-left', function(window, pane)
-    conditionalActivatePane(window, pane, 'Left', 'h')
-end)
-
-wezterm.on('ActivatePaneDirection-up', function(window, pane)
-    conditionalActivatePane(window, pane, 'Up', 'k')
-end)
-
-wezterm.on('ActivatePaneDirection-down', function(window, pane)
-    conditionalActivatePane(window, pane, 'Down', 'j')
-end)
+-- Configuration
 
 return {
 
+  unix_domains = {
+    {
+      name = 'unix',
+    },
+  },
+
   window_padding = {
     left = 4,
-    right = 0,
+    right = 4,
     top = 2,
     bottom = 0,
   },
@@ -71,24 +83,39 @@ return {
   },
 
   keys = {
-    { key = 't', mods = LEADER, action = act.SpawnTab 'CurrentPaneDomain' },
-    { key = 'RightArrow', mods = LEADER, action = act.ActivateTabRelative(1) },
-    { key = 'LeftArrow', mods = LEADER, action = act.ActivateTabRelative(-1) },
-    { key = 'h', mods = 'CTRL', action = act.EmitEvent('ActivatePaneDirection-left') },
-    { key = 'l', mods = 'CTRL', action = act.EmitEvent('ActivatePaneDirection-right') },
-    { key = 'j', mods = 'CTRL', action = act.EmitEvent('ActivatePaneDirection-down') },
-    { key = 'k', mods = 'CTRL', action = act.EmitEvent('ActivatePaneDirection-up') },
-    { key = 'LeftArrow', mods = 'ALT', action = act.AdjustPaneSize{ 'Left', 1 } },
-    { key = 'RightArrow', mods = 'ALT', action = act.AdjustPaneSize{ 'Right', 1 } },
-    { key = 'UpArrow', mods = 'ALT', action = act.AdjustPaneSize{ 'Up', 1 } },
-    { key = 'DownArrow', mods = 'ALT', action = act.AdjustPaneSize{ 'Down', 1 } },
-    { key = '|', mods = LEADER, action = act.SplitHorizontal{ domain =  'CurrentPaneDomain' } },
-    { key = '_', mods = LEADER, action = act.SplitVertical{ domain =  'CurrentPaneDomain' } },
-    { key = 'Enter', mods = 'ALT', action = act.ToggleFullScreen },
-    { key = 's', mods = LEADER, action = act.ActivateCopyMode },
-    { key = 'y', mods = LEADER, action = act.QuickSelect },
-    { key = 'U', mods = 'CTRL', action = act.ScrollByPage(-0.5) },
-    { key = 'D', mods = 'CTRL', action = act.ScrollByPage(0.5) },
+    split_nav('h'),
+    split_nav('j'),
+    split_nav('k'),
+    split_nav('l'),
+
+    { mods = LEADER, key = 'T',          action = act.SpawnTab 'CurrentPaneDomain' },
+    { mods = LEADER, key = 'RightArrow', action = act.ActivateTabRelative(1) },
+    { mods = LEADER, key = 'LeftArrow',  action = act.ActivateTabRelative(-1) },
+    { mods = LEADER, key = '|',          action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+    { mods = LEADER, key = '_',          action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
+    { mods = LEADER, key = 'S',          action = act.ActivateCopyMode },
+    { mods = LEADER, key = 'Y',          action = act.QuickSelect },
+    { mods = LEADER, key = 'W',          action = act.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES' } },
+    { mods = LEADER, key = 'A',          action = act.AttachDomain 'unix' },
+    { mods = LEADER, key = 'D',          action = act.DetachDomain { DomainName = 'unix' } },
+    {
+      mods = LEADER,
+      key = 'R',
+      action = act.PromptInputLine { description = 'Enter new name for session',
+        action = wezterm.action_callback(
+          function(window, _, line)
+            if line then
+              wezterm.mux.rename_workspace(
+                window:mux_window():get_workspace(),
+                line
+              )
+            end
+          end
+        ),
+      },
+    },
+    { mods = 'ALT',  key = 'Enter', action = act.ToggleFullScreen },
+    { mods = 'CTRL', key = 'U',     action = act.ScrollByPage(-0.5) },
+    { mods = 'CTRL', key = 'D',     action = act.ScrollByPage(0.5) },
   }
-  
 }

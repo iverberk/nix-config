@@ -25,12 +25,6 @@ map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 -- WINDOW MANAGEMENT (splitting and navigation)
 -- ═══════════════════════════════════════════════════════════
 
--- Move between windows with Ctrl+hjkl (like tmux)
-map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
-map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
-map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
-map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
-
 -- Resize windows with Ctrl+Shift+arrows (macOS friendly)
 map("n", "<C-S-Up>", "<cmd>resize +5<CR>", opts)
 map("n", "<C-S-Down>", "<cmd>resize -5<CR>", opts)
@@ -90,7 +84,8 @@ map("n", "<A-a>", "ggVG", { noremap = true, silent = true, desc = "Select all" }
 
 -- Clear search highlighting
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
-map("n", "<leader>ur", "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>", { desc = "Redraw / Clear hlsearch / Diff Update" })
+map("n", "<leader>ur", "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+  { desc = "Redraw / Clear hlsearch / Diff Update" })
 
 -- Smart search navigation (n always goes forward, N always backward)
 map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
@@ -119,15 +114,130 @@ map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
 
--- Auto-close pairs (simple, no plugin needed)
-map("i", "`", "``<left>")
-map("i", '"', '""<left>')
-map("i", "(", "()<left>")
-map("i", "[", "[]<left>")
-map("i", "{", "{}<left>")
-map("i", "<", "<><left>")
--- Note: Single quotes commented out to avoid conflicts in some contexts
--- map("i", "'", "''<left>")
+-- Auto-close pairs
+
+local function pair(open, close, pressed)
+  local col = vim.fn.col(".")
+  local line = vim.fn.getline(".")
+  local next_char = line:sub(col, col)
+
+  -- Closing key behavior (only for unequal characters)
+  if pressed == close and open ~= close then
+    if next_char == close then
+      return "<right>"
+    else
+      return close
+    end
+  end
+
+  -- Opening key behavior
+  if pressed == open then
+    -- Skip over existing close
+    if next_char == close then
+      return "<right>"
+    end
+
+    local before = line:sub(1, col - 1)
+
+    -- Handle equal characters (quotes) differently
+    if open == close then
+      -- For quotes, count occurrences before cursor to determine if we're inside a pair
+      local _, count = before:gsub(vim.pesc(open), "")
+      local inside_pair = count % 2 == 1
+
+      -- Inside an existing quote → just insert the character
+      if inside_pair then
+        return open
+      end
+
+      -- Adjacent to non-whitespace → just insert the character
+      if next_char ~= "" and not next_char:match("%s") then
+        return open
+      end
+
+      -- Otherwise → insert pair
+      return open .. close .. "<left>"
+    else
+      -- For unequal characters (parentheses), use the original logic
+      local _, open_count  = before:gsub(vim.pesc(open), "")
+      local _, close_count = before:gsub(vim.pesc(close), "")
+
+      local inside_pair    = open_count > close_count
+
+      -- Inside an existing pair → opening only
+      if inside_pair then
+        return open
+      end
+
+      -- Adjacent to non-whitespace → opening only
+      if next_char ~= "" and not next_char:match("%s") then
+        return open
+      end
+
+      -- Otherwise → insert pair
+      return open .. close .. "<left>"
+    end
+  end
+
+  -- Fallback
+  return pressed
+end
+
+map("i", '"', function() return pair('"', '"', '"') end, { expr = true })
+map("i", '`', function() return pair('`', '`', '`') end, { expr = true })
+map("i", "'", function() return pair("'", "'", "'") end, { expr = true })
+map("i", '{', function() return pair('{', '}', '{') end, { expr = true })
+map("i", '}', function() return pair('{', '}', '}') end, { expr = true })
+map("i", '(', function() return pair('(', ')', '(') end, { expr = true })
+map("i", ')', function() return pair('(', ')', ')') end, { expr = true })
+map("i", '<', function() return pair('<', '>', '<') end, { expr = true })
+map("i", '>', function() return pair('<', '>', '>') end, { expr = true })
+
+-- Smart Enter for paired characters
+local function smart_enter()
+  local col = vim.fn.col(".")
+  local line = vim.fn.getline(".")
+  local prev_char = col > 1 and line:sub(col - 1, col - 1) or ""
+  local next_char = line:sub(col, col)
+
+  -- Check if we're exactly between paired characters
+  local pairs = {
+    { open = "(", close = ")" },
+    { open = "{", close = "}" },
+    { open = "<", close = ">" },
+  }
+
+  for _, pair in ipairs(pairs) do
+    if prev_char == pair.open and next_char == pair.close then
+      -- Calculate indentation
+      local current_indent = vim.fn.indent(vim.fn.line("."))
+      local shiftwidth = vim.fn.shiftwidth()
+      local new_indent = current_indent + shiftwidth
+
+      -- Construct the new lines
+      local indent_str = string.rep(" ", new_indent)
+      local current_indent_str = string.rep(" ", current_indent)
+
+      -- Replace the current line with the properly indented structure
+      local row = vim.fn.line(".") - 1
+      local lines = {
+        line:sub(1, col - 1),
+        indent_str,
+        current_indent_str .. line:sub(col)
+      }
+      vim.api.nvim_buf_set_lines(0, row, row + 1, false, lines)
+
+      -- Position cursor on the new indented line
+      vim.api.nvim_win_set_cursor(0, { row + 2, new_indent })
+      return
+    end
+  end
+
+  -- Default behavior: just insert newline
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, true, true), "n", true)
+end
+
+map("i", "<CR>", smart_enter, { desc = "Smart Enter for paired characters" })
 
 -- ═══════════════════════════════════════════════════════════
 -- FILE OPERATIONS
@@ -140,7 +250,7 @@ map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
 -- Quit operations
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+-- map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 
 -- ═══════════════════════════════════════════════════════════
 -- DEVELOPMENT TOOLS

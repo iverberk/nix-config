@@ -91,3 +91,22 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+-- Restore last cursor position
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  callback = function(ev)
+    local lastpos = vim.api.nvim_buf_get_mark(ev.buf, '"')
+    if
+        vim.wo.diff
+        or ({
+          gitcommit = true,
+          gitrebase = true,
+          xxd = true,
+        })[vim.bo[ev.buf].filetype]
+    then
+      return
+    end
+    if pcall(vim.api.nvim_win_set_cursor, 0, lastpos) then
+      vim.cmd("normal! zz")
+    end
+  end,
+})
