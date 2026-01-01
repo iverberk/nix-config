@@ -116,7 +116,7 @@ map("i", ";", ";<c-g>u")
 
 -- Auto-close pairs
 
-local function pair(open, close, pressed)
+local function autoclose(open, close, pressed)
   local col = vim.fn.col(".")
   local line = vim.fn.getline(".")
   local next_char = line:sub(col, col)
@@ -183,15 +183,15 @@ local function pair(open, close, pressed)
   return pressed
 end
 
-map("i", '"', function() return pair('"', '"', '"') end, { expr = true })
-map("i", '`', function() return pair('`', '`', '`') end, { expr = true })
-map("i", "'", function() return pair("'", "'", "'") end, { expr = true })
-map("i", '{', function() return pair('{', '}', '{') end, { expr = true })
-map("i", '}', function() return pair('{', '}', '}') end, { expr = true })
-map("i", '(', function() return pair('(', ')', '(') end, { expr = true })
-map("i", ')', function() return pair('(', ')', ')') end, { expr = true })
-map("i", '<', function() return pair('<', '>', '<') end, { expr = true })
-map("i", '>', function() return pair('<', '>', '>') end, { expr = true })
+map("i", '"', function() return autoclose('"', '"', '"') end, { expr = true })
+map("i", '`', function() return autoclose('`', '`', '`') end, { expr = true })
+map("i", "'", function() return autoclose("'", "'", "'") end, { expr = true })
+map("i", '{', function() return autoclose('{', '}', '{') end, { expr = true })
+map("i", '}', function() return autoclose('{', '}', '}') end, { expr = true })
+map("i", '(', function() return autoclose('(', ')', '(') end, { expr = true })
+map("i", ')', function() return autoclose('(', ')', ')') end, { expr = true })
+map("i", '<', function() return autoclose('<', '>', '<') end, { expr = true })
+map("i", '>', function() return autoclose('<', '>', '>') end, { expr = true })
 
 -- Smart Enter for paired characters
 local function smart_enter()
