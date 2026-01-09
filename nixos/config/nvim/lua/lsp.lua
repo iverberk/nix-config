@@ -25,16 +25,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
       end
 
-      -- Inlay hints
-      if client:supports_method("textDocument/inlayHint") then
-        vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
-      end
-
       if client:supports_method("textDocument/documentColor") then
         vim.lsp.document_color.enable(true, args.buf, {
           style = "background", -- 'background', 'foreground', or 'virtual'
         })
       end
+
+      vim.keymap.set("n", '<leader>ti',
+        function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ 0 }), { 0 }) end,
+        { buffer = buf, desc = "LSP: toggle inlay hints" })
 
       for _, km in ipairs(default_keymaps) do
         -- Only bind if there's no `has` requirement, or the server supports it
@@ -53,5 +52,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 vim.lsp.enable({
   "lua_ls",
-  "pyright",
+  -- "pyright",
+  "basedpyright",
+  "ruff",
 })

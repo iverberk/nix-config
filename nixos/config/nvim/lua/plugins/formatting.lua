@@ -4,7 +4,7 @@ require("conform").setup({
   formatters_by_ft = {
     lua = { "stylua" },
     go = { "goimports", "gofmt" },
-    python = { "ruff_format", "black", stop_after_first = true },
+    python = { "ruff_fix", "ruff_organize_imports", "ruff_format" },
     json = { "biome", "prettier", stop_after_first = true },
     markdown = { "prettier" },
     javascript = { "biome", "prettier", stop_after_first = true },

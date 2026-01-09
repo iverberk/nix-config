@@ -38,7 +38,8 @@
       wget
       stern
       pyright
-      python314
+      unstable.basedpyright
+      pyenv
       uv
       poetry
       mypy
@@ -47,6 +48,8 @@
       unstable.claude-code
       unstable.opencode
       lua-language-server
+      tree-sitter
+      gcc
     ];
 
     pointerCursor = {
@@ -125,10 +128,6 @@
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
-      extraPackages = [pkgs.gcc pkgs.tree-sitter];
-      plugins = [
-        pkgs.vimPlugins.nvim-treesitter.withAllGrammars
-      ];
     };
 
     starship = {

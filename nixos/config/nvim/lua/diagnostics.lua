@@ -23,6 +23,16 @@ vim.fn.sign_define("DapBreakpoint", {
 
 local sev = vim.diagnostic.severity
 
+vim.diagnostic.handlers.loclist = {
+  show = function(_, _, _, opts)
+    -- Generally don't want it to open on every update
+    opts.loclist.open = opts.loclist.open or false
+    local winid = vim.api.nvim_get_current_win()
+    vim.diagnostic.setloclist(opts.loclist)
+    vim.api.nvim_set_current_win(winid)
+  end
+}
+
 vim.diagnostic.config({
   -- keep underline & severity_sort on for quick scanning
   underline = true,
@@ -35,17 +45,18 @@ vim.diagnostic.config({
   -- keep signs & virtual text, but tune them as you like
   signs = {
     text = {
-      [sev.ERROR] = " ",
-      [sev.WARN] = " ",
-      [sev.INFO] = " ",
-      [sev.HINT] = "󰌵 ",
+      [sev.ERROR] = "",
+      [sev.WARN] = "",
+      [sev.INFO] = "",
+      [sev.HINT] = "󰌵",
     },
   },
-  virtual_text = {
-    spacing = 4,
-    source = "if_many",
-    prefix = "●",
-  },
+  virtual_text = false,
+  -- virtual_text = {
+  --   spacing = 4,
+  --   source = "if_many",
+  --   prefix = "●",
+  -- },
   -- NEW in 0.11 — dim whole line
   linehl = {
     [sev.ERROR] = "DiagnosticErrorLine",
@@ -70,4 +81,3 @@ map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
 map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
-
