@@ -11,45 +11,46 @@
     stateVersion = "23.11";
 
     packages = with pkgs; [
-      minikube
       bat
       fd
-      fzf
-      jq
-      ripgrep
-      tree
-      watch
-      nodejs
       firefox
-      openvpn
-      mutagen
-      kubectl
-      k9s
-      unstable.kind
-      tektoncd-cli
-      kubernetes-helm
-      helmfile
-      kubernetes-helmPlugins.helm-diff
-      terraform
-      kustomize
-      shell-gpt
-      vale
-      yamllint
-      wget
-      stern
-      pyright
-      unstable.basedpyright
-      pyenv
-      uv
-      poetry
-      mypy
-      ruff
-      unstable.gemini-cli
-      unstable.claude-code
-      unstable.opencode
-      lua-language-server
-      tree-sitter
+      fzf
+      gh
       gcc
+      helmfile
+      jq
+      k9s
+      kubectl
+      kubernetes-helm
+      kubernetes-helmPlugins.helm-diff
+      kustomize
+      lua-language-server
+      minikube
+      mutagen
+      mypy
+      nodejs
+      openvpn
+      poetry
+      pyright
+      ripgrep
+      ruff
+      shell-gpt
+      stern
+      tektoncd-cli
+      terraform
+      tree
+      tree-sitter
+      unstable.basedpyright
+      unstable.claude-code
+      unstable.gemini-cli
+      unstable.jujutsu
+      unstable.kind
+      unstable.opencode
+      uv
+      vale
+      watch
+      wget
+      yamllint
     ];
 
     pointerCursor = {
