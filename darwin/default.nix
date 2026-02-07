@@ -34,7 +34,7 @@
     activationScripts.postActivation.text = ''
       # Upgrade all Homebrew packages to latest versions
       echo "Upgrading Homebrew packages..."
-      sudo -u ${user} /opt/homebrew/bin/brew upgrade --greedy
+      sudo -H -u ${user} /opt/homebrew/bin/brew upgrade --greedy
     '';
 
     checks = {
