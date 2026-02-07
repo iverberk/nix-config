@@ -32,9 +32,13 @@
     stateVersion = 4;
 
     activationScripts.postActivation.text = ''
+      # Update Homebrew taps to latest versions
+      echo "Updating Homebrew taps..."
+      sudo -H -u ${user} /opt/homebrew/bin/brew update
+      
       # Upgrade all Homebrew packages to latest versions
       echo "Upgrading Homebrew packages..."
-      sudo -H -u ${user} /opt/homebrew/bin/brew upgrade --greedy
+      sudo -H -u ${user} /opt/homebrew/bin/brew upgrade --greedy || echo "Some packages failed to upgrade, continuing..."
     '';
 
     checks = {
