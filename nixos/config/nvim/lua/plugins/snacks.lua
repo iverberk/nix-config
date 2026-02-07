@@ -99,7 +99,7 @@ snacks.setup({
         hidden = true,
         ignored = true,
         supports_live = true,
-        auto_close = true,
+        auto_close = false,
         diagnostics = true,
         diagnostics_open = false,
         focus = "list",
@@ -110,6 +110,7 @@ snacks.setup({
         jump = { close = true },
         tree = true,
         watch = true,
+        layout = { preview = "main" },
         exclude = {
           ".git",
           ".pnpm-store",
@@ -157,8 +158,8 @@ local keymaps = {
   { "<leader><space>", function() snacks.picker.smart() end,           desc = "Smart Find Files" },
   { "<leader>/",       function() snacks.picker.grep() end,            desc = "Grep" },
   { "<leader>:",       function() snacks.picker.command_history() end, desc = "Command History" },
-  { "<leader>n",       function() snacks.picker.notifications() end,   desc = "Notification History" },
-  { "<leader>e",       function() snacks.explorer() end,               desc = "File Explorer" },
+  { "<leader>h",       function() snacks.picker.notifications() end,   desc = "Notification History" },
+  { "<leader>n",       function() snacks.explorer() end,               desc = "File Explorer" },
   {
     "<leader>,",
     function()
@@ -249,7 +250,6 @@ local keymaps = {
   { "<leader>Z",  function() snacks.zen.zoom() end,                                       desc = "Toggle Zoom" },
   { "<leader>.",  function() snacks.scratch() end,                                        desc = "Toggle Scratch Buffer" },
   { "<leader>S",  function() snacks.scratch.select() end,                                 desc = "Select Scratch Buffer" },
-  { "<leader>n",  function() snacks.notifier.show_history() end,                          desc = "Notification History" },
   { "<leader>bd", function() snacks.bufdelete() end,                                      desc = "Delete Buffer" },
   { "<leader>cR", function() snacks.rename.rename_file() end,                             desc = "Rename File" },
   { "<leader>gB", function() snacks.gitbrowse() end,                                      desc = "Git Browse",               mode = { "n", "v" } },

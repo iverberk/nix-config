@@ -46,11 +46,16 @@
       unstable.jujutsu
       unstable.kind
       unstable.opencode
+      prettier
       uv
       vale
       watch
       wget
       yamllint
+      typescript
+      typescript-language-server
+      playwright-driver.browsers
+      vlc
     ];
 
     pointerCursor = {
