@@ -31,6 +31,12 @@
 
     stateVersion = 4;
 
+    activationScripts.postUserActivation.text = ''
+      # Upgrade all Homebrew packages to latest versions
+      echo "Upgrading Homebrew packages..."
+      /opt/homebrew/bin/brew upgrade --greedy
+    '';
+
     checks = {
       verifyNixPath = false;
     };
