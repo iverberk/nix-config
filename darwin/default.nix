@@ -31,10 +31,10 @@
 
     stateVersion = 4;
 
-    activationScripts.postUserActivation.text = ''
+    activationScripts.postActivation.text = ''
       # Upgrade all Homebrew packages to latest versions
       echo "Upgrading Homebrew packages..."
-      /opt/homebrew/bin/brew upgrade --greedy
+      sudo -u ${user} /opt/homebrew/bin/brew upgrade --greedy
     '';
 
     checks = {

@@ -20,6 +20,21 @@
       url = "github:zhaofengli-wip/nix-homebrew";
     };
 
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,7 +47,7 @@
 
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, darwin, nix-homebrew, disko, neovim, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, darwin, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, disko, neovim }@inputs:
     let
       user = "iverberk";
 
@@ -94,6 +109,11 @@
               nix-homebrew = {
                 inherit user;
                 enable = true;
+                taps = {
+                  "homebrew/homebrew-core" = homebrew-core;
+                  "homebrew/homebrew-cask" = homebrew-cask;
+                  "homebrew/homebrew-bundle" = homebrew-bundle;
+                };
                 mutableTaps = true;
                 autoMigrate = true;
               };
