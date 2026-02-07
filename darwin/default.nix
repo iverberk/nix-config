@@ -32,6 +32,11 @@
     stateVersion = 4;
 
     activationScripts.postActivation.text = ''
+      # Ensure Homebrew taps are present
+      echo "Checking Homebrew taps..."
+      sudo -H -u ${user} /opt/homebrew/bin/brew tap homebrew/core 2>/dev/null || true
+      sudo -H -u ${user} /opt/homebrew/bin/brew tap homebrew/cask 2>/dev/null || true
+      
       # Update Homebrew taps to latest versions
       echo "Updating Homebrew taps..."
       sudo -H -u ${user} /opt/homebrew/bin/brew update
