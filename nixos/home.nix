@@ -14,6 +14,8 @@
       bat
       fd
       firefox
+      ungoogled-chromium
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.pi
       fzf
       gh
       gcc
@@ -81,6 +83,13 @@
   };
 
   programs = {
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+      options = [
+        "--cmd cd"
+      ];
+    };
 
     dircolors = {
       enable = true;
@@ -129,7 +138,7 @@
 
     neovim = {
       enable = true;
-      package = inputs.neovim.packages.${pkgs.system}.default;
+      package = inputs.neovim.packages.${pkgs.stdenv.hostPlatform.system}.default;
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;

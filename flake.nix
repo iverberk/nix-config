@@ -16,7 +16,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     disko = {
       url = "github:nix-community/disko";
@@ -30,7 +33,7 @@
 
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, darwin, disko, neovim }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, darwin, disko, neovim, llm-agents }@inputs:
     let
       user = "iverberk";
 

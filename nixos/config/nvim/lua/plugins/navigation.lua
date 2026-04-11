@@ -35,3 +35,28 @@ vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down)
 vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up)
 vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right)
 vim.keymap.set('n', '<C-\\>', require('smart-splits').move_cursor_previous)
+
+vim.pack.add({
+  "https://github.com/nvim-mini/mini.files",
+})
+
+MiniFiles = require("mini.files")
+
+MiniFiles.setup({})
+
+-- Set focused directory as current working directory
+local set_cwd = function()
+  local path = (MiniFiles.get_fs_entry() or {}).path
+  if path == nil then return vim.notify('Cursor is not on valid entry') end
+  vim.fn.chdir(vim.fs.dirname(path))
+end
+
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'MiniFilesBufferCreate',
+  callback = function(args)
+    local b = args.data.buf_id
+    vim.keymap.set('n', 'g~', set_cwd, { buffer = b, desc = 'Set cwd' })
+  end,
+})
+
+vim.keymap.set('n', '<leader>n', '<cmd>lua MiniFiles.open()<cr>')
