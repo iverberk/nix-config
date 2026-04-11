@@ -26,14 +26,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    neovim = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, darwin, disko, neovim, llm-agents }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, darwin, disko, llm-agents }@inputs:
     let
       user = "iverberk";
 

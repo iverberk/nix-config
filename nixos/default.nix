@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, ... } :
+{ config, pkgs, ... } :
 {
   imports = [
     ./disk-config.nix

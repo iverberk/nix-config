@@ -1,9 +1,5 @@
 { config, pkgs, lib, inputs, ... } :
 {
-  nixpkgs.overlays = [
-    inputs.neovim.overlays.default
-  ];
-
   home = {
     enableNixpkgsReleaseCheck = false;
     username = "iverberk";
@@ -138,7 +134,7 @@
 
     neovim = {
       enable = true;
-      package = inputs.neovim.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      package = pkgs.unstable.neovim-unwrapped;
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
