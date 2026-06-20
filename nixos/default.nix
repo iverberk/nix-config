@@ -41,12 +41,6 @@
     useDHCP = false;
     interfaces.ens160.useDHCP = true;
     firewall.enable = false;
-    extraHosts =
-    ''
-      172.18.249.232 mwdb-dev assemblyline-dev keycloak-dev
-      172.18.187.221 mwdb-acc assemblyline-acc keycloak-acc
-      172.18.120.83  mwdb assemblyline keycloak
-    '';
   };
 
   # Video support
@@ -67,7 +61,12 @@
   };
 
   # Add docker daemon
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    extraPackages = with pkgs; [
+      docker-buildx
+    ];
+  };
 
   # Add ~/.local/bin to PATH
   environment.localBinInPath = true;
@@ -181,6 +180,8 @@
 
     systemPackages = with pkgs; [
       lsof
+      openssl
+      tigervnc
       cachix
       gnumake
       killall

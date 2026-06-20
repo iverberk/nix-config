@@ -54,6 +54,7 @@
       typescript-language-server
       playwright-driver.browsers
       vlc
+      hugo
     ];
 
     pointerCursor = {
