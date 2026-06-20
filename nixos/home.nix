@@ -18,6 +18,7 @@
       helmfile
       jq
       k9s
+      lazygit
       kubectl
       kubernetes-helm
       kubernetes-helmPlugins.helm-diff
@@ -125,10 +126,6 @@
       enable = true;
     };
 
-    lazygit = {
-      enable = true;
-    };
-
     go = {
       enable = true;
     };
@@ -136,6 +133,8 @@
     neovim = {
       enable = true;
       package = pkgs.unstable.neovim-unwrapped;
+      withRuby = false;
+      withPython3 = false;
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
