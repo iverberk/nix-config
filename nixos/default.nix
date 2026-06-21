@@ -156,11 +156,11 @@
         lightdm.enable = true;
 
         setupCommands = ''
-          ${pkgs.xorg.xrandr}/bin/xrandr --output Virtual-1 --auto
+          ${pkgs.xrandr}/bin/xrandr --output Virtual-1 --auto
         '';
 
         sessionCommands = ''
-          ${pkgs.xorg.xset}/bin/xset r rate 200 40
+          ${pkgs.xset}/bin/xset r rate 200 40
         '';
       };
 

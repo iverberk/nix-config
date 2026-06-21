@@ -164,6 +164,7 @@
 
     zsh = {
       enable = true;
+      dotDir = config.home.homeDirectory;
       autosuggestion.enable = true;
       enableCompletion = true;
       syntaxHighlighting = {
@@ -315,10 +316,10 @@
     ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks."*" = {
+      settings."*" = {
         serverAliveInterval = 60;
       };
-      matchBlocks = {
+      settings = {
         bootstrap = {
           hostname = "172.16.0.235";
           user = "iverberk";
