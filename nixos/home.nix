@@ -8,6 +8,7 @@
 
     packages = with pkgs; [
       bat
+      bruno
       fd
       firefox
       ungoogled-chromium
@@ -15,6 +16,8 @@
       fzf
       gh
       gcc
+      gotools
+      gopls
       helmfile
       jq
       k9s
@@ -30,6 +33,7 @@
       nodejs
       openvpn
       poetry
+      python3
       pyright
       ripgrep
       ruff

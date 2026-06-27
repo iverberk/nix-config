@@ -2,6 +2,8 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("user_" .. name, { clear = true })
 end
 
+require("lspconfig")
+
 local default_keymaps = {
   { keys = "<leader>ca", func = vim.lsp.buf.code_action, desc = "Code Actions" },
   { keys = "<leader>cr", func = vim.lsp.buf.rename,      desc = "Code Rename" },
@@ -26,13 +28,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
       end
 
       if client:supports_method("textDocument/documentColor") then
-        vim.lsp.document_color.enable(true, args.buf, {
+        vim.lsp.document_color.enable(true, { bufnr = buf }, {
           style = "background", -- 'background', 'foreground', or 'virtual'
         })
       end
 
-      vim.keymap.set("n", '<leader>ti',
-        function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ 0 }), { 0 }) end,
+      vim.keymap.set("n", "<leader>ti",
+        function()
+          vim.lsp.inlay_hint.enable(
+            not vim.lsp.inlay_hint.is_enabled({ bufnr = buf }),
+            { bufnr = buf }
+          )
+        end,
         { buffer = buf, desc = "LSP: toggle inlay hints" })
 
       for _, km in ipairs(default_keymaps) do
@@ -55,4 +62,5 @@ vim.lsp.enable({
   -- "pyright",
   "basedpyright",
   "ruff",
+  "gopls"
 })
