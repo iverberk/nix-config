@@ -69,26 +69,51 @@ Use this output format by default:
 ```markdown
 # <video title if known>
 
-## TL;DR
-- ...
+## Concise summary
+- Compress the video into the fewest bullets needed to preserve the core message.
 
-## Main points
-- ...
+## Key claims / arguments
+- List the speaker's main claims, arguments, conclusions, and supporting rationale.
 
-## Important details
-- ...
+## Concepts and definitions
+- Define important terms, frameworks, distinctions, and assumptions needed to understand the video.
+
+## Step-by-step instructions
+- If the video teaches a process, extract the procedure as clear numbered steps.
+- Omit this section or mark it as not applicable when the video is not instructional.
+
+## Important examples
+- Capture examples, demonstrations, case studies, analogies, or stories that materially improve understanding.
 
 ## Tools, links, or resources mentioned
 - ...
 
 ## Action items / takeaways
-- ...
+- List concrete next actions, decisions, habits, checklists, or lessons the viewer can apply.
+
+## Selected timestamp ranges worth watching
+- Include timestamp ranges **only when watching the video adds information needed to properly understand the content that is not easily understood or derived from the transcript alone**.
+- Do **not** use this section as a timestamped outline, chapter map, or list of where transcript topics occur. If the transcript captures the material adequately, omit the timestamp even if the section is important.
+- The fewer selected timestamp ranges, the better, but do not omit any segment whose visual/non-text content is necessary for understanding.
+- Strong reasons to include a segment:
+  - on-screen prompts, code, slides, diagrams, documents, tables, UI flows, or other visual material that captions reference but do not reproduce;
+  - visual demonstrations, screen shares, physical examples, before/after comparisons, or workflows where seeing the actions matters;
+  - moments where tone, nuance, interaction, or delivery materially changes interpretation and cannot be captured well in text.
+- Weak reasons that are **not sufficient** by themselves:
+  - the segment introduces an important concept that the transcript explains clearly;
+  - the segment corresponds to a major chapter or section;
+  - the speaker gives a concise verbal explanation;
+  - routine talking-head content, intros, sponsor reads, recaps, or mildly relevant material.
+- Before adding a range, ask: "Would a reader who only has the transcript materially misunderstand or miss something necessary if they skipped the video here?" Include it only if the answer is yes.
+- For each selected segment, include the shortest useful start/end range and a reason focused on the missing visual/non-transcript information.
+- If no video segments are needed beyond the transcript, write `- None; the transcript is sufficient.`
+- Make the start timestamp clickable as a Markdown link to the YouTube URL with the appropriate `t=` parameter, so the user can jump directly to the section. Use this format: `- [MM:SS–MM:SS](https://www.youtube.com/watch?v=<video-id>&t=<start-seconds>s) — reason`. For videos longer than one hour, use `HH:MM:SS–HH:MM:SS` while still using total seconds in the `t=` parameter.
 
 ## Caveats
 - Note transcript quality issues, missing captions, or uncertainty here.
 ```
 
-When timestamps are present, preserve useful timestamps in the summary. Do not invent claims, links, quotes, or timestamps that are not in the transcript.
+When timestamps are present, preserve useful timestamps in the summary and especially in `Selected timestamps worth watching`. Do not invent claims, links, quotes, or timestamps that are not in the transcript.
 
 ## Chunking strategy
 

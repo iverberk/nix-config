@@ -1,4 +1,4 @@
-{ config, pkgs, herdr, ... } :
+{ config, pkgs, ... } :
 {
   imports = [
     ./disk-config.nix
@@ -8,6 +8,14 @@
 
   ## Settings
   boot.growPartition = true;
+
+  nix.settings = {
+    trusted-users = [ "root" "@wheel" ];
+    extra-substituters = [ "https://cache.numtide.com" ];
+    extra-trusted-public-keys = [
+      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+    ];
+  };
 
   # Setup qemu so we can run x86_64 binaries
   boot.binfmt.emulatedSystems = ["x86_64-linux"];
@@ -189,7 +197,6 @@
       copyq
       xclip
       unzip
-      herdr.packages.${pkgs.system}.herdr
       (writeShellScriptBin "xrandr-auto" ''
         xrandr --output Virtual-1 --auto
       '')

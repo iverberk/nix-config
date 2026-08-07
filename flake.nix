@@ -18,7 +18,6 @@
 
     llm-agents = {
       url = "github:numtide/llm-agents.nix";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     disko = {
@@ -26,14 +25,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    herdr = {
-      url = "github:ogulcancelik/herdr/v0.7.5";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, darwin, disko, llm-agents, herdr }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, darwin, disko, llm-agents }@inputs:
     let
       user = "iverberk";
 

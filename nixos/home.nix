@@ -13,7 +13,7 @@
       unstable.ffmpeg
       firefox
       ungoogled-chromium
-      unstable.pi-coding-agent
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.pi
       unstable.ketch
       fzf
       gh
@@ -21,6 +21,7 @@
       gotools
       gopls
       helmfile
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.herdr
       jq
       k9s
       lazygit
@@ -377,6 +378,9 @@
       defaultProvider = "openai-codex";
       defaultModel = "gpt-5.5";
       defaultThinkingLevel = "medium";
+      packages = [
+        "npm:pi-chatgpt-limit@0.3.1"
+      ];
     } + "\n";
   };
 
