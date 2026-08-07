@@ -47,12 +47,12 @@
       tree
       tree-sitter
       unstable.basedpyright
-      unstable.claude-code
-      unstable.gemini-cli
-      unstable.hunk
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.gemini-cli
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.hunk
       unstable.jujutsu
       unstable.kind
-      unstable.opencode
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode
       prettier
       uv
       vale
