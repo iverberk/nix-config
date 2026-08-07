@@ -1,0 +1,27 @@
+# Herdr's first-run flow writes this setting when completed. Keep it here
+# because this config is managed declaratively.
+onboarding = false
+
+[keys]
+new_tab = ["prefix+c", "shift+cmd+t"]
+previous_tab = ["prefix+p", "shift+cmd+h"]
+next_tab = ["prefix+n", "shift+cmd+l"]
+split_vertical = ["prefix+v", "shift+cmd+|"]
+split_horizontal = ["prefix+minus", "shift+cmd+-"]
+focus_pane_left = ["prefix+h", "ctrl+h"]
+focus_pane_down = ["prefix+j", "ctrl+j"]
+focus_pane_up = ["prefix+k", "ctrl+k"]
+focus_pane_right = ["prefix+l", "ctrl+l"]
+
+[ui]
+sidebar_collapsed_mode = "hidden"
+prompt_new_tab_name = false
+pane_gaps = true
+
+[theme]
+name = "terminal"
+
+[theme.custom]
+# Inactive pane borders use overlay0. Keep them quiet against the terminal theme.
+overlay0 = "#5a5a5a"
+

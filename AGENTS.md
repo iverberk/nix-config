@@ -6,6 +6,12 @@
 - **Rollback (Darwin)**: `nix run .#rollback`
 - **Lint/Check**: `nix flake check` (if available)
 
+## Required After Changes
+- Whenever you are done modifying the NixOS configuration, reload/apply it by running `make build-switch` from the repository root.
+
+## Herdr Configuration
+- When adjusting Herdr configuration, always reference the online Herdr configuration help documentation. Never grep through source code to discover Herdr configuration options.
+
 ## Code Style
 - **Nix**: Standard formatting. Flake-based structure (`nixosConfigurations`/`darwinConfigurations`).
 - **Lua (Neovim)**:

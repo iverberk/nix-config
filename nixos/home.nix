@@ -10,9 +10,11 @@
       bat
       bruno
       fd
+      unstable.ffmpeg
       firefox
       ungoogled-chromium
-      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.pi
+      unstable.pi-coding-agent
+      unstable.ketch
       fzf
       gh
       gcc
@@ -46,6 +48,7 @@
       unstable.basedpyright
       unstable.claude-code
       unstable.gemini-cli
+      unstable.hunk
       unstable.jujutsu
       unstable.kind
       unstable.opencode
@@ -54,12 +57,15 @@
       vale
       watch
       wget
+      unstable.whisper-cpp
       yamllint
       typescript
       typescript-language-server
       playwright-driver.browsers
       vlc
       hugo
+      unstable.zmx
+      unstable.yt-dlp
     ];
 
     pointerCursor = {
@@ -107,6 +113,10 @@
     wezterm = {
       enable = true;
       extraConfig = builtins.readFile config/wezterm.lua;
+    };
+
+    ghostty = {
+      enable = true;
     };
 
     i3status = {
@@ -359,6 +369,29 @@
 
   xdg.enable = true;
 
+  home.file.".pi/agent/settings.json" = {
+    force = true;
+    text = builtins.toJSON {
+      lastChangelogVersion = "0.80.10";
+      theme = "tomorrow-night";
+      defaultProvider = "openai-codex";
+      defaultModel = "gpt-5.5";
+      defaultThinkingLevel = "medium";
+    } + "\n";
+  };
+
+  home.file.".pi/agent/skills" = {
+    source = config/pi/skills;
+    recursive = true;
+  };
+
+  home.file.".pi/agent/themes" = {
+    source = config/pi/themes;
+    recursive = true;
+  };
+
+  xdg.configFile."ghostty/config".text = builtins.readFile config/ghostty;
+  xdg.configFile."herdr/config.toml".text = builtins.readFile config/herdr.toml;
   xdg.configFile."lazygit/config.yml".text = builtins.readFile config/lazygit.yml;
   xdg.configFile."nvim" = { source = config/nvim; recursive = true; };
   xdg.configFile."i3/config".text = builtins.readFile config/i3;

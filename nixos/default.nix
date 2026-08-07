@@ -1,4 +1,4 @@
-{ config, pkgs, ... } :
+{ config, pkgs, herdr, ... } :
 {
   imports = [
     ./disk-config.nix
@@ -189,6 +189,7 @@
       copyq
       xclip
       unzip
+      herdr.packages.${pkgs.system}.herdr
       (writeShellScriptBin "xrandr-auto" ''
         xrandr --output Virtual-1 --auto
       '')
