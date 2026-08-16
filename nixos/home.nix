@@ -373,7 +373,10 @@
   home.file.".pi/agent/settings.json" = {
     force = true;
     text = builtins.toJSON {
-      lastChangelogVersion = "0.80.10";
+      # Keep this in sync with the packaged Pi version. Pi normally updates
+      # this after showing the changelog, but this file is managed by Nix and
+      # symlinked into the read-only store.
+      lastChangelogVersion = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.pi.version;
       theme = "tomorrow-night";
       defaultProvider = "openai-codex";
       defaultModel = "gpt-5.5";
